@@ -1,0 +1,20 @@
+body {
+    line-height: 150%;
+}
+
+p {
+    /*
+    text-indent: 1em;
+    */
+}
+
+pre {
+    /* font-size: 0.786em; */
+    padding: 0.455em;
+    /*
+    margin-top: 1.714em;
+    margin-bottom: 1.714em;
+    */
+    text-align: justify;
+    font-family: Monaco,Menlo,Consolas,"Courier New",monospace;
+}
