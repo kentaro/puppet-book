@@ -2,7 +2,7 @@ desc 'Default task (book)'
 task default: :book
 
 desc 'Create a mobi/epub-formatted file'
-task book: %i[mobi epub]
+task book: [:mobi, :epub]
 
 desc 'Create an html-formatted file'
 file html: Dir.glob('ja/*.md') do |t|
