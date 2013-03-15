@@ -2,6 +2,8 @@
 
 antipopがPuppet勉強のためにがんばって調べながら書く『入門Puppet(仮)の』epub/mobi本執筆用リポジトリです。このリポジトリが見える方々は、レビューや助言、執筆参加よろしくおねがいいたします(^o^)/
 
+naoyaさんのChef本の構成をパクって章立てします。
+
 ## 準備
 
   1. [calibre](http://calibre-ebook.com/)をインストール
