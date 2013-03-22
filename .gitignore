@@ -1,6 +1,3 @@
 /.bundle
 /vendor
-
-/puppet.epub
-/puppet.mobi
-/puppet.html
+/puppet.*
