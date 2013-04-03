@@ -16,7 +16,7 @@ HEADER = <<HEAD
 HEAD
 
 def munge(html)
-  yield(html).gsub /<h1>/, '<h1 class="chapter">'
+  yield(html).gsub /<h2>/, '<h2 class="chapter">'
 end
 
 STDOUT.write HEADER
