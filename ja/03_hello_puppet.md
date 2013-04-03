@@ -88,7 +88,7 @@ notice("Hello, World!")
 ```
 [vagrant@puppet-book vagrant]$ cd puppet/04/
 [vagrant@puppet-book 04]$ puppet apply hello_puppet.pp
-Notice: Scope(Class[main]): Hello, World
+Notice: Scope(Class[main]): Hello, World!
 Notice: Finished catalog run in 0.03 seconds
 ```
 
