@@ -35,7 +35,7 @@ end
 $ vagrant up
 ```
 
-![図1 仮想ホストの初回起動時の画面](images/02-vagrant-up.png)
+![図1 仮想ホストの初回起動時の画面](../images/02-vagrant-up.png)
 
 以下、`vagrant`コマンドは、`Vagrantfile`のあるディレクトリで実行してください。
 

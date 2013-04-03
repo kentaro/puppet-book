@@ -16,6 +16,7 @@ HEADER = <<HEAD
 HEAD
 
 def munge(html)
+  html.gsub!(/\.\.\/images\//, 'images/')
   yield(html).gsub /<h2>/, '<h2 class="chapter">'
 end
 
