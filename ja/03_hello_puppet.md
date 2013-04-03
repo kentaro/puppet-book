@@ -131,7 +131,7 @@ Puppetには、RAL(Resouce Abstraction Layer)という仕組みがあり、プ�
 このように、Puppetでmanifestを作成する流れは、
 
   1. 適当な場所にmanifestを書く
-  2. `puppet apply`コマンドを使ってmanifestをシステムに適用する
+  2. manifestをシステムに適用する
 
 という流れを繰り返していくことに他なりません。のちのちの説明では、さらに規模の大きなmanifestを書いていくために様々な記述方法を説明していきますが、本質的には上記の流れをくりかえしていくだけということに変わりありません。
 
