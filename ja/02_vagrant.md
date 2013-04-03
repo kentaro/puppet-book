@@ -26,6 +26,7 @@ Vagrantで利用できる仮想ホストのひな形は、有志により様々�
 Vagrant::Config.run do |config|
   config.vm.box     = "centos-6.4"
   config.vm.box_url = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20130309.box"
+  config.vm.host_name = "puppet.book.local"
 end
 ```
 
@@ -37,7 +38,7 @@ $ vagrant up
 
 ![図1 仮想ホストの初回起動時の画面](../images/02-vagrant-up.png)
 
-以下、`vagrant`コマンドは、`Vagrantfile`のあるディレクトリで実行してください。
+以下、本書の説明を通じて、`vagrant`コマンドは、`Vagrantfile`のあるディレクトリで実行してください。
 
 初回実行時には、仮想ホストのひな形(boxといいます)をダウンロードするために時間がかかりますが、次回からは既にダウンロードしたboxを使用するため、すぐに起動します。
 
@@ -52,13 +53,13 @@ $ vagrant ssh
 また、のちの章では通常のsshコマンドによるログインが必要になりますので、以下のようにコマンドを実行して、準備しておいてください。
 
 ```
-$ vagrant ssh-config --host puppet-book >> ~/.ssh/config
+$ vagrant ssh-config --host puppet-book.local >> ~/.ssh/config
 ```
 
-これで、いつものようにsshコマンドで仮想ホスト(ここではpuppet-bookというホスト名を指定)にログインできます。
+これで、いつものようにsshコマンドで仮想ホスト(ここではpuppet-book.localというホスト名を指定)にログインできます。
 
 ```
-$ ssh puppet-book
+$ ssh puppet-book.local
 ```
 
 ログインしたら、適当にコマンドを実行してみたりして、触ってみてください。ふだん使っているLinuxと変わらない環境が簡単にできてしまったことに、驚くことでしょう。
