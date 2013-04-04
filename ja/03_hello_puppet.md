@@ -1,4 +1,4 @@
-## 第3章: Puppetを試す - Hello Puppet!
+## 第3章: Hello, Puppet!
 
 試験環境も整ったところで、さっそくPuppetを始めましょう。本章では、定番の"Hello, World!"をPuppetで実行してみます。さらに、もうすこし実践的な例として、Puppetを使ってパッケージをインストールする方法を紹介します。
 
@@ -69,8 +69,8 @@ Vagrantfile
 まずはホストOS上で、manifestを置くためのディレクトリを作成しましょう。なお、このディレクトリの作成は必須ではなく、単純に、のちの章で作成するものとわけて置くほうが整理されていいだろうというだけの理由です。
 
 ```
-$ mkdir -p puppet/04
-$ cd puppet/04/
+$ mkdir -p puppet/03
+$ cd puppet/03/
 ```
 
 次に、以下の内容を`hello_world.pp`というファイル名で作成します。
@@ -86,8 +86,8 @@ notice("Hello, World!")
 このmanifestを実行してみましょう。今度は、仮想ホスト上でmanifestファイルのあるディレクトリに移動してから、`puppet apply`コマンドを実行します。
 
 ```
-[vagrant@puppet-book vagrant]$ cd puppet/04/
-[vagrant@puppet-book 04]$ puppet apply hello_puppet.pp
+[vagrant@puppet-book vagrant]$ cd puppet/03/
+[vagrant@puppet-book 03]$ puppet apply hello_puppet.pp
 Notice: Scope(Class[main]): Hello, World!
 Notice: Finished catalog run in 0.03 seconds
 ```
@@ -109,7 +109,7 @@ package { 'zsh':
 もう一度、`puppet apply`を実行します。今度は、ログの表示だけではなく、システムへの変更(具体的には`yum`コマンドによるパッケージのインストール)も行うので、`sudo`をつけます。
 
 ```
-[vagrant@puppet-book 04]$ sudo puppet apply hello_puppet.pp
+[vagrant@puppet-book 03]$ sudo puppet apply hello_puppet.pp
 Notice: Scope(Class[main]): Hello, World!
 Notice: /Stage[main]//Package[zsh]/ensure: created
 Notice: Finished catalog run in 22.57 seconds
@@ -118,7 +118,7 @@ Notice: Finished catalog run in 22.57 seconds
 意図した通り、zshパッケージがインストールされたようですね。
 
 ```
-[vagrant@puppet-book 04]$ which zsh
+[vagrant@puppet-book 03]$ which zsh
 /bin/zsh
 ```
 

@@ -7,8 +7,9 @@ naoyaさんのChef本の構成をパクって章立てします。
 ## 目次
 
   1.  はじめに
-  2.  Puppet とは何かを知りたい ─ Puppet Overview
-  3.  Puppet をインストールして試したい ─ Hello Puppet
+  2.  Puppetとは何か？
+  3.  Vagrantで試験環境を用意する
+  3.  Hello, Puppet!
   4.  nginx を Puppet で立ち上げたい
   5.  Puppet の試験環境を3分で用意する ─ Vagrant
   6.  レシピを作って実行する流れをおさらいしたい
