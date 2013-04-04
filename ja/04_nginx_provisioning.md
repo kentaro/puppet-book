@@ -173,7 +173,7 @@ package { 'nginx':
 
 これは、nginxパッケージをインストールする前に、nginxのyumリポジトリを登録する必要がある、ということを意味します。
 
-「関係」にはもうひとつ種類があります。nginxのインストール時のみならず、nginxの設定ファイルを変更した場合にも、nginxにその設定を再読み込みさせる必要があります。このような、あるresouceの変更にともなって再読み込みのようなアクションが必要となる関係をrefresh relationshipと呼び、`notify`によって記述します。
+「関係」にはもうひとつ種類があります。nginxのインストール時のみならず、nginxの設定ファイルを変更した場合にも、nginxにその設定を再読み込みさせる必要があります。このような、あるresourceの変更にともなって再読み込みのようなアクションが必要となる関係をrefresh relationshipと呼び、`notify`によって記述します。
 
 ```
 file { '/etc/nginx/conf.d/my.conf':
@@ -193,7 +193,7 @@ Puppetのmanifestは、ファイル内の記述順で処理が実行されるわ
 
 上記で、`package`を宣言する際にはすべて小文字で書いていた一方で、`require`によって依存関係を記述する際には`Package['nginx']`と、最初の1文字を大文字で書いていたことに気付いたでしょうか？
 
-このように、resourceの宣言時にはすべて小文字を使い、relationshipのあるresouceへの参照時には、最初の文字を大文字にした名前を使います。他のresourceへの参照を、resource referenceと呼びます。宣言時はすべて小文字で、それ以外は最初の1文字を大文字にする、と憶えておいてください。
+このように、resourceの宣言時にはすべて小文字を使い、relationshipのあるresourceへの参照時には、最初の文字を大文字にした名前を使います。他のresourceへの参照を、resource referenceと呼びます。宣言時はすべて小文字で、それ以外は最初の1文字を大文字にする、と憶えておいてください。
 
 ### まとめ
 
@@ -201,6 +201,6 @@ Puppetのmanifestは、ファイル内の記述順で処理が実行されるわ
 
   * `yumrepo`、`file`、`service`という、あらたなresource type
   * `template()`によってerb形式のテンプレートが評価・展開されること
-  * resouce間のrelationshipを記述すること
+  * resource間のrelationshipを記述すること
 
 すこし大変だったかもしれませんが、ここで学んだことをきちんと理解しておけば、Puppetの本質の、多くの部分を把握したことになります。本章をよく読み返してみて、いまいちど理解を確かめてみてください。
