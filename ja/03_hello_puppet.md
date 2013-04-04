@@ -126,7 +126,7 @@ Notice: Finished catalog run in 22.57 seconds
 
 Puppetには、RAL(Resouce Abstraction Layer)という仕組みがあり、プラットフォーム固有の事情を抽象化することで、差異を吸収してくれます。
 
-### Puppetmanifestの作成の流れ
+### manifestの作成の流れ
 
 このように、Puppetでmanifestを作成する流れは、
 
