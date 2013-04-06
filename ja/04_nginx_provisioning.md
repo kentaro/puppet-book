@@ -28,9 +28,8 @@ $ mkdir -p puppet/04
 
 ```
 yumrepo { 'nginx':
-  name     => 'nginx',
   descr    => 'nginx yum repository',
-  baseurl  => 'http://nginx.org/packages/centos/6/$basearch/',
+  baseurl  => 'http://nginx.org/packages/centos/$releasever/$basearch/',
   enabled  => 1,
   gpgcheck => 0
 }
@@ -74,7 +73,7 @@ service { 'nginx':
 
 作成したmanifestを、上から見ていきましょう。`package`については前章で紹介したので、省略します。今回はあらたに`yumrepo`、`file`、そして`service`というresource typeが使われています。
 
-`[yumrepo](http://docs.puppetlabs.com/references/latest/type.html#yumrepo)`は、システムへのyumリポジトリの登録状態を記述するためのresource typeです。ここでは[nginxのインストールマニュアル](http://wiki.nginx.org/Install)に掲載されている公式のyumリポジトリを登録し、使用可能な状態にしています(説明の簡単のため、GPGキーのチェックは行っていません)。
+`[yumrepo](http://docs.puppetlabs.com/references/latest/type.html#yumrepo)`は、システムへのyumリポジトリの登録状態を記述するためのresource typeです。ここでは[nginxのインストールマニュアル](http://wiki.nginx.org/Install)に掲載されている公式のyumリポジトリを登録し、使用可能な状態にしています。
 
 `[file](http://docs.puppetlabs.com/references/latest/type.html#file)`は、ファイルやディレクトリに関するresource typeです。ファイルやディレクトリが、指定されたattribute通りに存在しする(あるいは存在しない)という状態を記述するために使います。`owner`や`group`などの各attributeがどのような意味を持つかは、想像がつくでしょう。`template()`、および`require`と`notify`の各Attributeについては、後述します。
 

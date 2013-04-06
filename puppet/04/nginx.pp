@@ -1,7 +1,6 @@
 yumrepo { 'nginx':
-  name     => 'nginx',
   descr    => 'nginx yum repository',
-  baseurl  => 'http://nginx.org/packages/centos/6/$basearch/',
+  baseurl  => 'http://nginx.org/packages/centos/$releasever/$basearch/',
   enabled  => 1,
   gpgcheck => 0
 }
