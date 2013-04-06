@@ -20,10 +20,11 @@ package { 'zsh':
 
 ### `ensure`で状態を記述する
 
-ここでひとつ念頭に留めておきたいのは、`package`はパッケージをインストールするためだけに使われるものではないということです。resouce typeは、あくまでもresourceの「状態」を記述するものであって、その「状態」には、インストールされていること以外にも、「インストールされていないこと」ということもあり得ます。
+ここでひとつ念頭に留めておきたいのは、`package`はパッケージをインストールするためだけに使われるものではないということです。resouce typeは、あくまでもresourceの「状態」を記述するものであって、その「状態」には、インストールされていること以外にも、「インストールされていないこと」という場合もあり得ます。
 
 ここで、どういう状態であるべきかを指定しているのが`ensure`というattributeです。この場合は、`installed`に指定されています。他には、
 
+  * `present`: `installed`と同じ
   * `absent`: インストールされていない
   * `latest`: 常に最新のものがインストールされている
 
@@ -74,7 +75,7 @@ require => Package[$packages]
 package { 'supervisor':
   ensure   => installed,
   source   => '/tmp/supervisor-3.0a12-2.el6.noarch.rpm',
-  provider => 'rpm'
+  provider => 'rpm',
 }
 ```
 
