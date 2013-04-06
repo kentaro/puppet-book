@@ -23,20 +23,12 @@ Welcome to your Vagrant-built virtual machine.
 これをそのまま使ってもいいのですが、本章執筆時点での最新バージョン3.1.1を使うために、Rubyのライブラリを管理する`gem`コマンドによってインストールしてみましょう。
 
 ```
-[vagrant@puppet-book ~]$ sudo gem install puppet
+[vagrant@puppet-book ~]$ sudo gem install puppet --no-rdoc --no-ri
 Successfully installed facter-1.6.18
 Successfully installed json_pure-1.7.7
-Successfully installed hiera-1.1.2
+Successfully installed hiera-1.2.0
 Successfully installed puppet-3.1.1
 4 gems installed
-Installing ri documentation for facter-1.6.18...
-Installing ri documentation for json_pure-1.7.7...
-Installing ri documentation for hiera-1.1.2...
-Installing ri documentation for puppet-3.1.1...
-Installing RDoc documentation for facter-1.6.18...
-Installing RDoc documentation for json_pure-1.7.7...
-Installing RDoc documentation for hiera-1.1.2...
-Installing RDoc documentation for puppet-3.1.1...
 ```
 
 Vagrantで起動した仮想ホストでは、デフォルトのログインユーザである`vagrant`ユーザが、パスワードの入力なしに`sudo`コマンドを実行できるよう設定されています。
@@ -106,7 +98,7 @@ package { 'zsh':
 }
 ```
 
-もう一度、`puppet apply`を実行します。今度は、ログの表示だけではなく、システムへの変更(具体的には`yum`コマンドによるパッケージのインストール)も行うので、`sudo`をつけます。
+もう一度、`puppet apply`を実行します。今度は、ログの表示だけではなく、システムへの変更(`yum`コマンドによるパッケージのインストール)も行うので、`sudo`権限で実行する必要があります。
 
 ```
 [vagrant@puppet-book 03]$ sudo puppet apply hello_puppet.pp

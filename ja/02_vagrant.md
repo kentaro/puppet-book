@@ -1,4 +1,4 @@
-## 第2章: Vagrantで試験環境を用意する
+# 第2章: Vagrantで試験環境を用意する
 
 本書では、「はじめに」で述べたように、Puppetの試験環境としてLinux(Amazon LinuxとCentOS)を使用します。といっても、いますぐ手元に、自分の自由になるLinux環境を用意できないという読者も多いでしょう。
 
@@ -10,6 +10,8 @@
 
 本書では、これまでVagrantでの利用実績が豊富なVirtualBoxを使っていくことにします。
 
+ちなみに、VagrantにはPuppetと連携できる機能があり、仮想ホストの起動時や起動後に、指定した設定をもとにmanifestを適用する仕組みがあります。しかし、本書は現場で使えるPuppet入門を目指しており、より実践的な方法を採るため、その機能は使いません。
+
 ### Vagrantのインストール
 
 まずはVirtualBoxをインストールしましょう。[VirtualBoxのダウンロードページ](https://www.virtualbox.org/wiki/Downloads)からお使いの環境にあったパッケージをダウンロードし、インストーラの指示に従ってインストールしてください。
@@ -18,29 +20,60 @@ VirtualBoxのインストールが終わったら、今度はVagrantをインス
 
 ### 仮想ホストの起動
 
-Vagrantで利用できる仮想ホストのひな形は、有志により様々なディストリビューションのものが提供されています([http://www.vagrantbox.es/](http://www.vagrantbox.es/))。ここでは、CentOS 6.4のものを利用します。
+Vagrantで利用できる仮想ホストのひな形(boxといいます)は、有志により様々なディストリビューションのものが提供されています([http://www.vagrantbox.es/](http://www.vagrantbox.es/))。ここでは、CentOS 6.4のものを利用します。
 
-仮想ホストを起動するための設定は非常に簡単です。適当なディレクトリ内で、以下の内容のファイルを`Vagrantfile`という名前で作成してください。
+仮想ホストを起動するための設定は、非常に簡単です。適当なディレクトリに、以下の内容のファイルを`Vagrantfile`という名前で作成してください。
 
 ```ruby
-Vagrant::Config.run do |config|
-  config.vm.box       = "centos-6.4"
-  config.vm.box_url   = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20130309.box"
-  config.vm.host_name = "puppet.book.local"
+Vagrant.configure("2") do |config|
+  config.vm.box      = "centos-6.4"
+  config.vm.box_url  = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20130309.box"
+  config.vm.hostname = "puppet-book.local"
+  config.vm.network :forwarded_port, guest: 80, host: 8000
 end
 ```
 
-ファイルを作成したのと同じディレクトリで、以下のコマンドを実行すると、仮想ホストが起動します。
+このファイルでは、以下の設定を行っています。
+
+  * 仮想ホストに使用するbox名
+  * boxが存在しなかった場合に取得する先のURL
+  * 仮想ホストのhostnameの指定
+  * ホストOSの8080番ポートへのアクセスを、仮想ホストの80番ポートに転送する
+
+ファイルを作成したのと同じディレクトリで、`vagrant up`コマンドを実行すると、仮想ホストが起動します。
 
 ```
 $ vagrant up
+Bringing machine 'default' up with 'virtualbox' provider...
+[default] Box 'centos-6.4' was not found. Fetching box from specified URL for
+the provider 'virtualbox'. Note that if the URL does not havea box for this provider, you should interrupt Vagrant now and addthe box yourself. Otherwise Vagrant will attempt to download the
+full box prior to discovering this error.
+Downloading with Vagrant::Downloaders::HTTP...
+Downloading box: http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20130309.boxExtracting box...Cleaning up downloaded box...
+Successfully added box 'centos-6.4' with provider 'virtualbox'!
+[default] Importing base box 'centos-6.4'...
+[default] Matching MAC address for NAT networking...
+[default] Setting the name of the VM...
+[default] Clearing any previously set forwarded ports...
+[default] Fixed port collision for 22 => 2222. Now on port 2205.
+[default] Creating shared folders metadata...
+[default] Clearing any previously set network interfaces...
+[default] Preparing network interfaces based on configuration...
+[default] Forwarding ports...
+[default] -- 22 => 2205 (adapter 1)
+[default] -- 80 => 8000 (adapter 1)
+[default] Booting VM...
+[default] Waiting for VM to boot. This can take a few minutes.
+[default] VM booted and ready for use!
+[default] Setting hostname...
+[default] Configuring and enabling network interfaces...
+[default] Mounting shared folders...
+[default] -- /vagrant
 ```
-
-![図1 仮想ホストの初回起動時の画面](../images/02-vagrant-up.png)
 
 以下、本書の説明を通じて、`vagrant`コマンドは、`Vagrantfile`のあるディレクトリで実行してください。
 
-初回実行時には、仮想ホストのひな形(boxといいます)をダウンロードするために時間がかかりますが、次回からは既にダウンロードしたboxを使用するため、すぐに起動します。
+初回実行時には、boxをダウンロードするために時間がかかりますが、次回からは既にダウンロードしたboxを使用するため、すぐに起動します。
 
 ### 仮想ホストにSSHログインする
 
@@ -92,6 +125,6 @@ Vagrantには、上記で紹介したものの他にもたくさんの便利な�
 
 ### まとめ
 
-本章では、Puppetを実際に使う前段階として、Vagrantを使ってPuppetの試験環境を用意しました。`vagrant up`で起動し、あれこれいじった後に気に入らなくなってきたら`vagrant destroy`で元通りなんてことも、簡単にできてしまいます。これからPuppetでこの仮想ホストをいじり倒していくには、もってこいの機能です。
+本章では、Puppetを実際に使う前段階として、Vagrantを使ってPuppetの試験環境を用意しました。`vagrant up`で起動し、あれこれいじった後に気に入らなくなってきたら`vagrant destroy`でまっさらなんてことも、簡単にできてしまいます。これからPuppetでこの仮想ホストをいじり倒していくには、もってこいの機能です。
 
-ちなみに、VagrantにはPuppetと連携できる機能があり、`vagrant up`時に、指定した設定をもとにPuppetを実行することもできます。その件については、後述することにしましょう。
+これからmanifestを書いていく上で、何度も仮想ホストを作り直していくことになるでしょう。言葉を変えていえば、何度作り直してもmanifestさえあればすぐに元通りになるという状態を作っていくことが、manifestを書くということになるのです。

@@ -40,7 +40,7 @@ package { 'nginx':
   require => Yumrepo['nginx'],
 }
 
-$port = 8000
+$port = 80
 
 file { '/etc/nginx/conf.d/my.conf':
   ensure  => present,
@@ -129,17 +129,16 @@ Hello, <%= target %>!
 さて、manifestを作成したら、システムに適用してみましょう。今回は前回と違ってテンプレートも使うので、`puppet apply`コマンド実行時に、`--templatedir`オプションでカレントディレクトリ(`.`)を指定します。
 
 ```
-[vagrant@puppet-book vagrant]$ cd puppet/04
-[vagrant@puppet-book 04]$ sudo puppet apply --templatedir=. nginx.pp
-Notice: /Stage[main]//Yumrepo[nginx]/descr: descr changed '' to 'nginx repo'
+[vagrant@puppet-book 04]$ sudo puppet apply --templatedir=.nginx.pp
+Notice: /Stage[main]//Yumrepo[nginx]/descr: descr changed '' to 'nginx yum repository'
 Notice: /Stage[main]//Yumrepo[nginx]/baseurl: baseurl changed '' to 'http://nginx.org/packages/centos/6/$basearch/'
 Notice: /Stage[main]//Yumrepo[nginx]/enabled: enabled changed '' to '1'
-Notice: /Stage[main]//Yumrepo[nginx]/gpgcheck: gpgcheck changed '' to '0'
-Notice: /Stage[main]//Package[nginx]/ensure: created
-Notice: /Stage[main]//File[/etc/nginx/conf.d/my.conf]/ensure: createdNotice: /Stage[main]//Service[nginx]/ensure: ensure changed 'stopped' to 'running'
+Notice: /Stage[main]//Yumrepo[nginx]/gpgcheck: gpgcheck changed '' to '0'Notice: /Stage[main]//Package[nginx]/ensure: created
+Notice: /Stage[main]//File[/usr/share/nginx/html/index.html]/content: content changed '{md5}e3eb0a1df437f3f97a64aca5952c8ea0' to '{md5}1db16ebfb21d376e5b2ae9d1eaf5b3c8'
+Notice: /Stage[main]//File[/etc/nginx/conf.d/my.conf]/ensure: created
+Notice: /Stage[main]//Service[nginx]/ensure: ensure changed 'stopped' to 'running'
 Notice: /Stage[main]//Service[nginx]: Triggered 'refresh' from 1 events
-Notice: /Stage[main]//File[/usr/share/nginx/html/index.html]/ensure: created
-Notice: Finished catalog run in 9.04 seconds
+Notice: Finished catalog run in 33.69 seconds
 ```
 
 エラーなく終了したら、nginxが実際に起動しているかどうか、確認してみましょう。

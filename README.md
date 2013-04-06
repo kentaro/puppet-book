@@ -9,27 +9,25 @@ naoyaさんのChef本の構成をパクって章立てします。
   1.  はじめに
   2.  Puppetとは何か？
   3.  Vagrantで試験環境を用意する
-  3.  Hello, Puppet!
-  4.  nginx を Puppet で立ち上げたい
-  5.  Puppet の試験環境を3分で用意する ─ Vagrant
-  6.  レシピを作って実行する流れをおさらいしたい
-  7.  サードパーティの Puppet クックブックを使いたい
-  8.  代表的なレシピのサンプルを見たい ─ xxx のレシピを読む
-  9.  パッケージをインストールする ─ package
-  10. サービスを起動したい ─ service と subscribe/notify
-  11. テンプレートから設定ファイルを配置したい ─ Puppet Template
-  12. ファイルやディレクトリを扱いたい ─ file, directory
-  13. ユーザーを作成したい ─ user, group
-  14. 任意のシェルスクリプトを実行したい ─ exec
-  15. その他の Resource
-  16. レシピ落ち穂拾い ─ class, module, ベストプラクティス
-  17. Resource を自分で定義したい ─ Defined Types
-  18. ノードやプラットフォームによって異なる変数を定義したい
-  19. ノードを役割ごとにグルーピングして管理したい
-  20. サードパーティのクックブックを Bundler 風に管理したい ─ librarian-puppet
-  21. Puppet Server の様子を知りたい - 概要からセットアップまで
-  22. どこまでを Puppet でやるべきか
-  24. おわりに
+  4.  Hello, Puppet!
+  5.  nginxのmanifestを書く
+  6.  パッケージをインストールしたい - package
+  7.  yumリポジトリを登録したい - yumrepo
+  8.  サービスを起動したい service
+  9.  ファイルやディレクトリを扱いたい - file
+  10. ユーザやグループを作成したい - user/group
+  11. コマンドを実行したい - exec
+  12. td-agentのmanifestを書く
+  12. クラスを定義する
+  13. モジュール
+  14. サードパーティのモジュールを使う
+  15. 独自のResouceを定義する
+  16. Puppet言語のシンタクス
+  17. サーバを役割ごとにグルーピングして管理したい
+  18. リモートホストに対してPuppetを実行する
+  19. ベストプラクティス
+  20. どこまでをPuppetでやるべきか
+  21. おわりに
 
 ## 事前準備
 

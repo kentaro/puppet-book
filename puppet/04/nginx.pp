@@ -11,7 +11,7 @@ package { 'nginx':
   require => Yumrepo['nginx'],
 }
 
-$port = 8000
+$port = 80
 
 file { '/etc/nginx/conf.d/my.conf':
   ensure  => present,
