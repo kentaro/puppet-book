@@ -19,7 +19,7 @@ file { '/etc/nginx/conf.d/my.conf':
   mode    => '0644',
   content => template('my.conf'),
   require => Package['nginx'],
-#  notify  => Service['nginx'],
+  notify  => Service['nginx'],
 }
 
 $target = 'Puppet'
@@ -38,5 +38,4 @@ service { 'nginx':
   ensure     => running,
   hasrestart => true,
   require    => File['/etc/nginx/conf.d/my.conf'],
-  subscribe  => File['/etc/nginx/conf.d/my.conf'],
 }

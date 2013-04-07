@@ -6,6 +6,8 @@
 
 `service`はそのような、サービスに関するシステム状態を記述するためのresource typeです。
 
+[http://docs.puppetlabs.com/references/latest/type.html#service](http://docs.puppetlabs.com/references/latest/type.html#file)
+
 ### Service
 
 第4章で、nginxのサービス起動状態を記述するのに、以下のように書きました。
