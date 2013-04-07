@@ -13,7 +13,7 @@ naoyaさんのChef本の構成をパクって章立てします。
   5.  nginxのmanifestを書く
   6.  パッケージをインストールしたい - package
   7.  yumリポジトリを登録したい - yumrepo
-  8.  サービスを起動したい service
+  8.  サービスを起動したい - service
   9.  ファイルやディレクトリを扱いたい - file
   10. ユーザやグループを作成したい - user/group
   11. コマンドを実行したい - exec

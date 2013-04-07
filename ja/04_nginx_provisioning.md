@@ -63,9 +63,10 @@ file { '/usr/share/nginx/html/index.html':
 }
 
 service { 'nginx':
-  enable  => true,
-  ensure  => running,
-  require => File['/etc/nginx/conf.d/my.conf'],
+  enable     => true,
+  ensure     => running,
+  hasrestart => true,
+  require    => File['/etc/nginx/conf.d/my.conf'],
 }
 ```
 
