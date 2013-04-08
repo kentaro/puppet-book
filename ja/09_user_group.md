@@ -107,13 +107,11 @@ Notice: Finished catalog run in 0.11 seconds
 確認してみましょう。
 
 ```
-[vagrant@puppet-book user_group]$ cat /etc/group | grep guest
-guest:x:1000:antipop
+[vagrant@puppet-book user_group]$ cat /etc/passwd | grep antipop
+antipop:x:5451:1000:antipop:/home/antipop:/bin/bash
 ```
 
-ちゃんと追加されていますね。
-
- (ここ、ドキュメントでは追加されることになってるけど、追加されないんだが…)
+グループIDが1000で、ちゃんと追加されていますね。
 
 ### まとめ
 
