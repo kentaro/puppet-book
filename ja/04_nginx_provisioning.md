@@ -129,7 +129,7 @@ Hello, <%= target %>!
 さて、manifestを作成したら、システムに適用してみましょう。今回は前回と違ってテンプレートも使うので、`puppet apply`コマンド実行時に、`--templatedir`オプションでカレントディレクトリ(`.`)を指定します。
 
 ```
-[vagrant@puppet-book 04]$ sudo puppet apply --templatedir=.nginx.pp
+[vagrant@puppet-book 04]$ sudo puppet apply --templatedir=. nginx.pp
 Notice: /Stage[main]//Yumrepo[nginx]/descr: descr changed '' to 'nginx yum repository'
 Notice: /Stage[main]//Yumrepo[nginx]/baseurl: baseurl changed '' to 'http://nginx.org/packages/centos/6/$basearch/'
 Notice: /Stage[main]//Yumrepo[nginx]/enabled: enabled changed '' to '1'
