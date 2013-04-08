@@ -108,7 +108,7 @@ Notice: Finished catalog run in 0.11 seconds
 
 ```
 [vagrant@puppet-book user_group]$ cat /etc/passwd | grep antipop
-antipop:x:5451:1000:antipop:/home/antipop:/bin/bash
+antipop:x:502:1000:antipop:/home/antipop:/bin/bash
 ```
 
 グループIDが1000で、ちゃんと追加されていますね。
