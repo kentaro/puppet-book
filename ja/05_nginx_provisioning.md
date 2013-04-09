@@ -18,13 +18,15 @@ CentOSにnginxをインストールし、実際にHTTPサーバとしてユー�
 
 ### manifestに落とす
 
-次に、上記の1〜5を、manifestに落としていきます。
+次に、上記の1〜5を、manifestに落としていきます。まずは、本章で作成するmanifestを置くためのディレクトリを作成しましょう。
 
 ```
-$ mkdir -p puppet/04
+$ cd puppet/
+$ mkdir -p nginx
+$ cd nginx/
 ```
 
-上記のようにディレクトリを作成し、その中に`nginx.pp`というファイル名で、以下の内容のファイルを作ります。
+以下の内容で、`nginx.pp`というファイルを作成してください。
 
 ```
 yumrepo { 'nginx':
@@ -72,7 +74,7 @@ service { 'nginx':
 
 ### manifestの内容
 
-作成したmanifestを、上から見ていきましょう。`package`については前章で紹介したので、省略します。今回はあらたに`yumrepo`、`file`、そして`service`というresource typeが使われています。
+作成したmanifestを、上から見ていきましょう。`package`については前章で紹介したので、省略します。今回はあらたに`yumrepo`、`file`、そして`service`というresource typeが使われています。これらresource typeについてはあとの章でより詳しく見ていきますので、ここでは簡単な説明にとどめます。
 
 `[yumrepo](http://docs.puppetlabs.com/references/latest/type.html#yumrepo)`は、システムへのyumリポジトリの登録状態を記述するためのresource typeです。ここでは[nginxのインストールマニュアル](http://wiki.nginx.org/Install)に掲載されている公式のyumリポジトリを登録し、使用可能な状態にしています。
 
@@ -129,7 +131,8 @@ Hello, <%= target %>!
 さて、manifestを作成したら、システムに適用してみましょう。今回は前回と違ってテンプレートも使うので、`puppet apply`コマンド実行時に、`--templatedir`オプションでカレントディレクトリ(`.`)を指定します。
 
 ```
-[vagrant@puppet-book 04]$ sudo puppet apply --templatedir=. nginx.pp
+[vagrant@puppet-book ~]$ cd /vagrant/puppet/nginx
+[vagrant@puppet-book nginx]$ sudo puppet apply --templatedir=. nginx.pp
 Notice: /Stage[main]//Yumrepo[nginx]/descr: descr changed '' to 'nginx yum repository'
 Notice: /Stage[main]//Yumrepo[nginx]/baseurl: baseurl changed '' to 'http://nginx.org/packages/centos/6/$basearch/'
 Notice: /Stage[main]//Yumrepo[nginx]/enabled: enabled changed '' to '1'
@@ -144,7 +147,7 @@ Notice: Finished catalog run in 33.69 seconds
 エラーなく終了したら、nginxが実際に起動しているかどうか、確認してみましょう。
 
 ```
-[vagrant@puppet-book 04]$ curl localhost:8000/
+[vagrant@puppet-book nginx]$ curl localhost:8000/
 Hello, Puppet!
 ```
 
