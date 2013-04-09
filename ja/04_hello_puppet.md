@@ -6,11 +6,10 @@
 
 ### Puppetのインストール
 
-実は、前章で準備したVagrantの仮想ホストには、最初からPuppetがインストールされているので、Puppetを特別にインストールする必要はありません。`vagrant ssh`で仮想ホストにログインして、確かめてみましょう。
+実は、前章で準備したVagrantの仮想ホストには、最初からPuppetがインストールされています。そのため、Puppetを特別にインストールする必要はありません。`vagrant ssh`で仮想ホストにログインして、確かめてみましょう。
 
 ```
 $ vagrant ssh
-Last login: Wed Apr  3 14:16:35 2013 from 10.0.2.2
 Welcome to your Vagrant-built virtual machine.
 [vagrant@puppet-book ~]$ puppet --version
 3.1.0
@@ -49,10 +48,10 @@ Vagrantで起動した仮想ホストでは、デフォルトのログインユ�
 ```
 [vagrant@puppet-book ~]$ cd /vagrant
 [vagrant@puppet-book vagrant]$ ls
-Vagrantfile
+Vagrantfile  puppet
 ```
 
-`Vagrantfile`が見えますね。Vagrantは、特に指定しなくても、仮想ホストの`/vagrant`ディレクトリに、ホストOS上の`Vagrantfile`のあるディレクトリをマウントしてくれます。
+`Vagrantfile`が見えますね。Vagrantは、特に指定しなくても、仮想ホストの`/vagrant`ディレクトリに、ホストOS上の`Vagrantfile`のあるディレクトリをマウントしてくれます。また、サンプルコードを`git clone`した場合は、`puppet`ディレクトリも見えているはずです。
 
 これからmanifestを書いていく際は、ホストOS上でファイルの編集を行い、Puppetの実行のみを仮想ホスト上で行うことにします。そうすることで、ファイルの編集をホストOS上でいつも使っているエディタで行いつつ、Puppetの実行は仮想ホストで、といったことが可能になり、とても便利です。
 
@@ -61,25 +60,25 @@ Vagrantfile
 まずはホストOS上で、manifestを置くためのディレクトリを作成しましょう。なお、このディレクトリの作成は必須ではなく、単純に、のちの章で作成するものとわけて置くほうが整理されていいだろうというだけの理由です。
 
 ```
-$ mkdir -p puppet/03
-$ cd puppet/03/
+$ mkdir -p puppet/hello_puppet
+$ cd puppet/hello_puppet/
 ```
 
-次に、以下の内容を`hello_world.pp`というファイル名で作成します。
+次に、以下の内容で、`hello_world.pp`というファイルを作成します。
 
 ```
 notice("Hello, World!")
 ```
 
-このように、Puppetのmanifestは、`.pp`という拡張子をつけることになっています。
+このように、Puppetのmanifestファイルは、`.pp`という拡張子をつけることになっています。
 
 ### Puppetを実行する
 
 このmanifestを実行してみましょう。今度は、仮想ホスト上でmanifestファイルのあるディレクトリに移動してから、`puppet apply`コマンドを実行します。
 
 ```
-[vagrant@puppet-book vagrant]$ cd puppet/03/
-[vagrant@puppet-book 03]$ puppet apply hello_puppet.pp
+[vagrant@puppet-book ~]$ cd /vagrant/puppet/hello_puppet/
+[vagrant@puppet-book hello_puppet]$ puppet apply hello_world.pp
 Notice: Scope(Class[main]): Hello, World!
 Notice: Finished catalog run in 0.03 seconds
 ```
@@ -90,7 +89,7 @@ Notice: Finished catalog run in 0.03 seconds
 
 さて、"Hello, World!"の表示からもう一歩すすんで、今度は実際にシステムの状態を変更する操作を行ってみましょう。ここではzshを、Puppetを使ってインストールします。
 
-さきほどの`hello_world.pp`に、以下の内容を追記してください。
+さきほどの`hello_world.pp`と同階層に、以下の内容で`zsh.pp`というファイルを作成してください。
 
 ```
 package { 'zsh':
@@ -98,25 +97,24 @@ package { 'zsh':
 }
 ```
 
-もう一度、`puppet apply`を実行します。今度は、ログの表示だけではなく、システムへの変更(`yum`コマンドによるパッケージのインストール)も行うので、`sudo`権限で実行する必要があります。
+今度は、新しく作成したファイルを引数にして`puppet apply`を実行します。今度は、ログの表示だけではなく、システムへの変更(`yum`コマンドによるパッケージのインストール)も行うので、`sudo`権限で実行する必要があります。
 
 ```
-[vagrant@puppet-book 03]$ sudo puppet apply hello_puppet.pp
-Notice: Scope(Class[main]): Hello, World!
+[vagrant@puppet-book hello_puppet]$ sudo puppet apply zsh.pp
 Notice: /Stage[main]//Package[zsh]/ensure: created
-Notice: Finished catalog run in 22.57 seconds
+Notice: Finished catalog run in 9.76 seconds
 ```
 
 意図した通り、zshパッケージがインストールされたようですね。
 
 ```
-[vagrant@puppet-book 03]$ which zsh
+[vagrant@puppet-book hello_puppet]$ which zsh
 /bin/zsh
 ```
 
 ここで注目したいのは、PuppetによってCentOS上でパッケージをインストールするに際して、`yum`コマンドのような、プラットフォーム固有のコマンドを指定していないということです。
 
-Puppetには、RAL(Resouce Abstraction Layer)という仕組みがあり、プラットフォーム固有の事情を抽象化することで、差異を吸収してくれます。
+Puppetには、RAL(Resouce Abstraction Layer)という仕組みがあり、プラットフォーム固有の事情を抽象化することで、差異を吸収してくれます。この仕組みのおかげで、どのプラットフォームにmanifestを適用するかを気にすることなく、システム構成の記述という本質に注力することができるのです。
 
 ### manifestの作成の流れ
 
