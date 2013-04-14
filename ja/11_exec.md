@@ -1,4 +1,4 @@
-## 第11章: 任意のコマンドを実行したい - exec
+## 第11章 任意のコマンドを実行したい - exec
 
 Puppetは
 [ドキュメント](http://docs.puppetlabs.com/references/latest/type.html)

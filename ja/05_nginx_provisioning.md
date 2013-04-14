@@ -1,4 +1,4 @@
-## 第5章: nginxのmanifestを書く
+## 第5章 nginxのmanifestを書く
 
 前章では、簡単なmanifestを作成し、システムへ適用することを通して、Puppetでの作業の流れを体験してみました。本章では、さらに実践的なmanifestの作成に挑戦してみましょう。
 
