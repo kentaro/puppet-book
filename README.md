@@ -21,11 +21,11 @@ antipopがPuppet勉強のためにがんばって調べながら書く『入門P
   13. td-agentのmanifestを書く
   14. resource typeのグルーピング - class
   15. manifestに関連するファイルをまとめる - module
-  16. 用途に特化したmanifestを定義する
-  17. 独自のResouceを定義する - definition
-  18. 最低限必要なPuppet言語の構文を学ぶ
-  19. システム状態をテストする - serverspec
-  20. サーバを役割ごとにグルーピングして管理したい
+  16. サーバの役割を定義する Part.1
+  17. サーバの役割を定義する Part.2
+  18. 独自のResouceを定義する - definition
+  19. 最低限必要なPuppet言語の構文を学ぶ
+  20. システム状態をテストする - serverspec
   21. リモートホストに対してPuppetを実行する
   22. ベストプラクティス
   23. どこまでをPuppetでやるべきか
