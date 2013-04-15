@@ -34,9 +34,10 @@ naoyaさんのChef本の構成をパクって章立てします。
 ## 事前準備
 
   1. [calibre](http://calibre-ebook.com/)をインストール
-  2. 確認用にKindleアプリ([Mac版](http://www.amazon.com/gp/feature.html?ie=UTF8&docId=1000464931))を入れておくとよいでしょう
+  2. calibreの設定画面から、コマンドラインツールをインストールする
+  3. 確認用にKindleアプリ([Mac版](http://www.amazon.com/gp/feature.html?ie=UTF8&docId=1000464931))を入れておくとよいでしょう
     * HTML, epubも出力するので、そちらで確認もできます。
-  3. `bundle install`を実行
+  4. `bundle install`を実行
 
 ## 書き方
 
