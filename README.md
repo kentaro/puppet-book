@@ -12,19 +12,19 @@ naoyaさんのChef本の構成をパクって章立てします。
   4.  Vagrantで試験環境を用意する
   5.  Hello, Puppet!
   6.  nginxのmanifestを書く
-  7.  パッケージをインストールしたい - package
-  8.  yumリポジトリを登録したい - yumrepo
-  9.  サービスを起動したい - service
-  10. ファイルやディレクトリを扱いたい - file
-  11. ユーザやグループを作成したい - user/group
-  12. 任意のコマンドを実行したい - exec
+  7.  パッケージをインストールする - package
+  8.  yumリポジトリを登録する - yumrepo
+  9.  サービスを起動する - service
+  10. ファイルやディレクトリを作成する - file
+  11. ユーザやグループを作成する - user/group
+  12. 任意のコマンドを実行する - exec
   13. td-agentのmanifestを書く
-  14. クラスを定義する
-  15. モジュール
-  16. それぞれの用途に特化したmanifestを定義する
-  17. 独自のResouceを定義する
-  18. Puppet言語のシンタクス
-  19. システム状態をテストする
+  14. resource typeのグルーピング - class
+  15. manifestに関連するファイルをまとめる - module
+  16. 用途に特化したmanifestを定義する
+  17. 独自のResouceを定義する - definition
+  18. 最低限必要なPuppet言語の構文を学ぶ
+  19. システム状態をテストする - serverspec
   20. サーバを役割ごとにグルーピングして管理したい
   21. リモートホストに対してPuppetを実行する
   22. ベストプラクティス
