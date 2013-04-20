@@ -20,25 +20,27 @@ VirtualBoxのインストールが終わったら、今度はVagrantをインス
 
 ### 仮想ホストの起動
 
-Vagrantで利用できる仮想ホストのひな形(boxといいます)は、有志により様々なディストリビューションのものが提供されています([http://www.vagrantbox.es/](http://www.vagrantbox.es/))。ここでは、CentOS 6.4のものを利用します。
+Vagrantで利用できる仮想ホストのひな形(boxといいます)は、有志により様々なディストリビューションのものが用意されています([http://www.vagrantbox.es/](http://www.vagrantbox.es/))。また、Puppet提供元のPuppet Labsからも、様々なディストリビューションのboxが提供されています([http://puppet-vagrant-boxes.puppetlabs.com/](http://puppet-vagrant-boxes.puppetlabs.com/))。
+
+本書では、Puppet Labsが提供するCentOS 6.4のboxを利用します。
+
+[http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210.box](http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210.box)
 
 仮想ホストを起動するための設定は、非常に簡単です。適当なディレクトリに、以下の内容のファイルを`Vagrantfile`という名前で作成してください。
 
 ```ruby
 Vagrant.configure("2") do |config|
-  config.vm.box      = "centos-6.4"
-  config.vm.box_url  = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20130309.box"
+  config.vm.box      = "centos-6.4-puppet"
+  config.vm.box_url  = "http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210.box"
   config.vm.hostname = "puppet-book.local"
-  config.vm.network :forwarded_port, guest: 80, host: 8000
 end
 ```
 
 このファイルでは、以下の設定を行っています。
 
-  * 仮想ホストに使用するbox名
+  * 仮想ホストに使用するbox名の指定
   * boxが存在しなかった場合に取得する先のURL
   * 仮想ホストのhostnameの指定
-  * ホストOSの8080番ポートへのアクセスを、仮想ホストの80番ポートに転送する
 
 ファイルを作成したのと同じディレクトリで、`vagrant up`コマンドを実行すると、仮想ホストが起動します。
 
@@ -49,8 +51,9 @@ Bringing machine 'default' up with 'virtualbox' provider...
 the provider 'virtualbox'. Note that if the URL does not havea box for this provider, you should interrupt Vagrant now and addthe box yourself. Otherwise Vagrant will attempt to download the
 full box prior to discovering this error.
 Downloading with Vagrant::Downloaders::HTTP...
-Downloading box: http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20130309.boxExtracting box...Cleaning up downloaded box...
-Successfully added box 'centos-6.4' with provider 'virtualbox'!
+Downloading box: http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210.box
+Extracting box...Cleaning up downloaded box...
+Successfully added box 'centos-6.4-puppet' with provider 'virtualbox'!
 [default] Importing base box 'centos-6.4'...
 [default] Matching MAC address for NAT networking...
 [default] Setting the name of the VM...
@@ -61,7 +64,6 @@ Successfully added box 'centos-6.4' with provider 'virtualbox'!
 [default] Preparing network interfaces based on configuration...
 [default] Forwarding ports...
 [default] -- 22 => 2205 (adapter 1)
-[default] -- 80 => 8000 (adapter 1)
 [default] Booting VM...
 [default] Waiting for VM to boot. This can take a few minutes.
 [default] VM booted and ready for use!
