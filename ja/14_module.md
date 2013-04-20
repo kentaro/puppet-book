@@ -6,7 +6,7 @@
 
 moduleとは、classの含まれる様々なファイルや、それらのclassが必要とするテンプレートなどをひとまとめに管理するための仕組みです。classがmanifestの内容を分類・整理するためのものであった一方で、moduleは上記のファイル群を分類・整理します。
 
-moduleは、再利用が可能な単位でまとめるのが一般的です。そのため、特定のシステムに限らず、広く一般的に使えるmoduleが、有志により[Puppet Forge](https://forge.puppetlabs.com/)で公開されています。本章を読み、moduleの作成方法を学んだら、興味をひいたmoduleを眺めてみてください。今後moduleを作成する際に、おおいに参考になるでしょう。
+moduleは、再利用が可能な単位でまとめるのが一般的です。そのような、特定のシステムに限らず、広く一般的に使えるmoduleが、有志により[Puppet Forge](https://forge.puppetlabs.com/)で公開されています。本章を読み、moduleの作成方法を学んだら、興味をひいたmoduleを眺めてみてください。今後moduleを作成する際に、おおいに参考になるでしょう。
 
 ### td-agentのmoduleを作成する
 
@@ -18,8 +18,8 @@ moduleの詳細に入る前に、実際に内容を見る方が理解がはや�
 
 ```
 $ cd puppet/
-$ mkdir module
-$ cd module/
+$ mkdir modules
+$ cd modules/
 ```
 
 まずは、module名と同名のディレクトリを作成しましょう。
@@ -97,7 +97,7 @@ class td-agent::service {
 }
 ```
 
-また、`td-agent.conf`は`templates`ディレクトリ以下に配置します。以下のような構成になるはずです。また、内容は前回とは異なり、以下のようにします。サーバの用途ごとに異なる設定は`conf.d/`以下に配置することを前提に、用途を問わず共通化しておくべき設定を提供します。
+また、`td-agent.conf`は`templates`ディレクトリ以下に配置します。内容は前回とは異なり、以下のようにします。サーバの用途ごとに異なる設定は`conf.d/`以下に配置することを前提に、用途を問わず共通化しておくべき設定を提供します。
 
 ```
 # conf.d以下に用途ごとに設定を分けて置く
@@ -129,14 +129,17 @@ include conf.d/*.conf
 
 以上の作業を終えたら、以下の通りのディレクトリ/ファイル構成になっているはずです。
 
-  * td-agent/
-    * manifests/
-      * init.pp
-      * install.pp
-      * config.pp
-      * service.pp
-    * templates/
-      * td-agent.conf
+```
+$ tree puppet/modules/puppet/modules/
+└── td-agent
+    ├── manifests
+    │   ├── config.pp
+    │   ├── init.pp
+    │   ├── install.pp
+    │   └── service.pp
+    └── templates
+        └── td-agent.conf
+```
 
 これで、td-agentのmoduleが作成できました。
 
@@ -168,13 +171,13 @@ moduleは、前述の通り、ファイル群を分類・整理するための�
 
 さて、作成したtd-agentのmoduleを適用してみましょう。今回は、あらたなコマンドライン引数`--modulepath`と`--execute`を使います。
 
-`--modulepath`により、moduleの格納されているパスを指定します。そのパス以下に含まれるディレクトリの名前が、module名として認識されます。今回の例では、`puppet/module/`ディレクトリ以下にある`td-agent`ディレクトリが、module名として認識されます。
+`--modulepath`により、moduleの格納されているパスを指定します。そのパス以下に含まれるディレクトリの名前が、module名として認識されます。今回の例では、`puppet/modules/`ディレクトリ以下にある`td-agent`ディレクトリが、module名として認識されます。
 
 `--execute`オプションに文字列をわたすと、manifestファイルに書かれたもの同様に実行することができます。今回は、これまでのようなmanifestを書くことなく、moduleのみ作成したので、`--execute`オプションによってclassの`include`を行います。
 
 ```
-[vagrant@puppet-book ~]$ cd /vagrant/puppet/module/
-[vagrant@puppet-book module]$ sudo puppet apply --modulepath=. --execute 'include td-agent'
+[vagrant@puppet-book ~]$ cd /vagrant/puppet/modules/
+[vagrant@puppet-book modules]$ sudo puppet apply --modulepath=. --execute 'include td-agent'
 Notice: /Stage[main]/Td-agent::Install/Yumrepo[treasuredata]/descr: descr changed '' to 'treasuredata repo'
 Notice: /Stage[main]/Td-agent::Install/Yumrepo[treasuredata]/baseurl: baseurl changed '' to 'http://packages.treasure-data.com/redhat/$basearch/'
 Notice: /Stage[main]/Td-agent::Install/Yumrepo[treasuredata]/enabled: enabled changed '' to '1'
