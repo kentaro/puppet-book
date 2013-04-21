@@ -123,4 +123,4 @@ unless => 'test -d /home/vagrant/local/xbuild'
 
 本章では、任意のコマンドを実行できる`exec`について学びました。便利な反面、冪等性を自分で担保しなければならない、扱いの難しいresource typeです。
 
-manifestを書いていて、`exec`を多用しているなと感じたら、たいていはmanifestの書き方に問題があります。`exec`を使わざるを得ない場合でも、第○章で解説するdefinitionでラップして、できるだけ生でexecを使わないようにする方がよいでしょう。
+manifestを書いていて、`exec`を多用しているなと感じたら、たいていはmanifestの書き方に問題があります。`exec`を使わざるを得ない場合でも、第17章で解説するdefinitionでラップして、できるだけ生でexecを使わないようにする方がよいでしょう。

@@ -23,7 +23,7 @@ antipopがPuppet勉強のためにがんばって調べながら書く『入門P
   15. manifestに関連するファイルをまとめる - module
   16. サーバの役割を定義する Part.1
   17. サーバの役割を定義する Part.2
-  18. 独自のResouceを定義する - definition
+  18. manifestの共通部分をくくりだす
   19. 最低限必要なPuppet言語の構文を学ぶ
   20. システム状態をテストする - serverspec
   21. リモートホストに対してPuppetを実行する

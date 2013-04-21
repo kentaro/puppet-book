@@ -358,7 +358,7 @@ roles/app/templates/td-agent/app.conf:
   type forward
 
   <server>
-    host 192.168.1.101
+    host 192.168.0.101
     port 24224
   </server>
 
