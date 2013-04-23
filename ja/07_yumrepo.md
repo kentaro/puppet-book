@@ -12,7 +12,7 @@
 ```
 yumrepo { 'nginx':
   descr    => 'nginx yum repository',
-  baseurl  => 'http://nginx.org/packages/centos/$releasever/$basearch/',
+  baseurl  => 'http://nginx.org/packages/centos/6/$basearch/',
   enabled  => 1,
   gpgcheck => 0
 }
@@ -23,7 +23,7 @@ yumrepo { 'nginx':
 ```
 [nginx]
 name=nginx yum repository
-baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
+baseurl=http://nginx.org/packages/centos/6/$basearch/
 enabled=1
 gpgcheck=0
 ```
@@ -35,7 +35,7 @@ gpgcheck=0
 ```
 yumrepo { 'epel':
   descr      => 'epel repo',
-  mirrorlist => 'http://mirrors.fedoraproject.org/mirrorlist?repo=epel-$releasever&arch=$basearch',
+  mirrorlist => 'http://mirrors.fedoraproject.org/mirrorlist?repo=epel-6r&arch=$basearch',
   enabled    => 1,
   gpgcheck   => 1,
   gpgkey     => 'https://fedoraproject.org/static/0608B895.txt',

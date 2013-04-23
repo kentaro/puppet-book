@@ -198,7 +198,7 @@ modules/nginx/manifests/install.pp:
 class nginx::install {
   yumrepo { 'nginx':
     descr    => 'nginx yum repository',
-    baseurl  => 'http://nginx.org/packages/centos/$releasever/$basearch/',
+    baseurl  => 'http://nginx.org/packages/centos/6/$basearch/',
     enabled  => 1,
     gpgcheck => 0
   }
@@ -402,7 +402,7 @@ Vagrantfile  modules  roles
 ```
 [vagrant@app vagrant]$ sudo puppet apply --modulepath=modules:roles manifests/app.pp
 Notice: /Stage[main]/Nginx::Install/Yumrepo[nginx]/descr: descr changed '' to 'nginx yum repository'
-Notice: /Stage[main]/Nginx::Install/Yumrepo[nginx]/baseurl: baseurl changed '' to 'http://nginx.org/packages/centos/$releasever/$basearch/'
+Notice: /Stage[main]/Nginx::Install/Yumrepo[nginx]/baseurl: baseurl changed '' to 'http://nginx.org/packages/centos/6/$basearch/'
 Notice: /Stage[main]/Nginx::Install/Yumrepo[nginx]/enabled: enabled changed '' to '1'
 Notice: /Stage[main]/Nginx::Install/Yumrepo[nginx]/gpgcheck: gpgcheck changed '' to '0'Notice: /Stage[main]/Nginx::Install/Package[nginx]/ensure: created
 Notice: /Stage[main]/Nginx::Install/File[/var/log/nginx]/owner: owner changed 'root' to 'nginx'
