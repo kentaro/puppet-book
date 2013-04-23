@@ -133,7 +133,7 @@ end
 
 ### manifestを適用する
 
-まず、リモートホストにmanifestをデプロイするディレクトリを作成するために、以下を実行します。この操作は、インスタンス作成直後にいちど行うだけでけっこうです。ちなみに、`access_key`および`secret_access_key`は、以下のURLからあらかじめ取得しておいてください。
+まず、リモートホストにmanifestをデプロイするディレクトリを作成するために、以下を実行します。この操作は、インスタンス作成直後にいちど行うだけでけっこうです。ちなみに、`access_key_id`および`secret_access_key`は、以下のURLからあらかじめ取得しておいてください。
 
 [https://portal.aws.amazon.com/gp/aws/securityCredentials](https://portal.aws.amazon.com/gp/aws/securityCredentials)
 
