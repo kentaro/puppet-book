@@ -30,7 +30,7 @@ $ capify .
 [done] capified!
 ```
 
-後述の通り、上記の操作で作成された`config/deploy.rb`を編集します。
+上記の操作で作成された`config/deploy.rb`を、後述の通り編集します。
 
 ### Amazon EC2に本番ホストを用意する
 
