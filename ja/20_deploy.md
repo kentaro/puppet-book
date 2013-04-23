@@ -72,9 +72,9 @@ set :access_key_id,     ENV['AWS_ACCESS_KEY_ID']
 set :secret_access_key, ENV['AWS_SECRET_ACCESS_KEY']
 set :region,            ENV['AWS_REGION']
 
-ssh_options[:keys] = [File.join(ENV["HOME"], ".ssh", "puppet-book.pem")]
 set :use_sudo, false
 default_run_options[:pty] = true
+ssh_options[:keys] = [File.join(ENV["HOME"], ".ssh", "puppet-book.pem")]
 
 namespace :puppet do
   namespace :apply do
