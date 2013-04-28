@@ -10,8 +10,6 @@ Puppetは2005年のリリース以来、後発の[Chef](http://www.opscode.com/c
 
 是非、本書を読みながら自分でも手を動かしてみて、一歩先行くエンジニアになってみませんか。
 
-2013年5月 栗林健太郎 ([@kentaro](http://twitter.com/kentaro))
-
 ### システム環境
 
 本書執筆時の、筆者のシステム環境は以下の通りです。
@@ -27,7 +25,15 @@ Puppetは2005年のリリース以来、後発の[Chef](http://www.opscode.com/c
 
 本書に関するフィードバックは以下におよせください。
 
-  * GitHub: http://github.com/kentaro/puppet-book-support/issues
+  * GitHub: [http://github.com/kentaro/puppet-book-support/issues](http://github.com/kentaro/puppet-book-support/issues)
   * メール: kentarok+puppet-book@gmail.com
 
 なお、Puppetその他にまつわるテクニカルサポートは行っておりません。その類のお問い合せに関しましては一切おこたえしかねますので、あらかじめご了承ください。
+
+### 本書の書誌情報
+
+  * kindle-v1.0.0: 2013年5月6日
+
+### 筆者について
+
+栗林健太郎。ネット上では「antipop/kentaro/あんちぽ」として知られる。市役所職員、株式会社はてな勤務を経て、現在は株式会社paperboy&co.で技術基盤整備エンジニアとして勤務。Perl MongerでRubyist、時々ぺちぱー。[http://kentarok.org/](http://kentarok.org/)
