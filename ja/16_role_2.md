@@ -270,7 +270,7 @@ td-agent (pid  6162) is running...
 
 なにを「動作確認」するべきなのでしょうか。あらためて整理してみましょう。`app`で`http://app.puppet-book.local/`にアクセスすると:
 
-  1. `app`ロールの`/var/log/nginx/app.access.log`に、アクセスログが記録されている
+  1. `app`ロールの`/var/log/nginx/app.access.log`に、アクセスログが記録される
   2. 1のログが、`log`ロールのtd-agentに送信され、`/var/log/td-agent/app`以下に記録される
 
 というものでした。実際にみていきましょう。
