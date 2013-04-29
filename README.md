@@ -9,7 +9,7 @@ antipopがPuppet勉強のためにがんばって調べながら書く『入門P
   1.  はじめに
   2.  なぜPuppetが必要なのか？
   3.  本書の方針
-  4.  Vagrantで試験環境を用意する
+  4.  Vagrantで開発環境を用意する
   5.  Hello, Puppet!
   6.  nginxのmanifestを書く
   7.  パッケージをインストールする - package

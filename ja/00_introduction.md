@@ -16,7 +16,7 @@ Puppetは2005年のリリース以来、後発の[Chef](http://www.opscode.com/c
 
   * 作業環境: Mac OSX 10.8.2 + ruby 2.0.0
   * 本番環境: Amazon Linux AMI 2013.03 + ruby 1.8.7
-  * 試験環境: Vagrant 1.1.5 + CentOS 6.4 + ruby 1.8.7
+  * 開発環境: Vagrant 1.1.5 + CentOS 6.4 + ruby 1.8.7
   * Puppet: 3.1.1
 
 現状、最も広く使われているPuppetのバージョンは2.7系だと思われますが、本書における説明の範囲内では、3.1系でもたいした違いはありませんので、ご安心ください。
