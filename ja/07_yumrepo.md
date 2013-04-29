@@ -1,6 +1,6 @@
 ## 第7章 yumリポジトリを登録する - yumrepo
 
-今回は、OS標準のもの以外のyumリポジトリを利用したい場合に使う
+今回は、OS標準のリポジトリ以外のyumリポジトリを利用したい場合に使う
 `yumrepo`について紹介します。
 
 [http://docs.puppetlabs.com/references/latest/type.html#yumrepo](http://docs.puppetlabs.com/references/latest/type.html#yumrepo)
@@ -14,7 +14,7 @@ yumrepo { 'nginx':
   descr    => 'nginx yum repository',
   baseurl  => 'http://nginx.org/packages/centos/6/$basearch/',
   enabled  => 1,
-  gpgcheck => 0
+  gpgcheck => 0,
 }
 ```
 
@@ -52,4 +52,8 @@ GPGキーのリストは、以下のURLから取得できます。
 
 ### まとめ
 
-本章では、yumリポジトリのシステムへの登録状態を記述する`yumrepo`について見ていきました。通常の利用には、本章の説明で十分です。より細かい制御を必要とする場合は、`man yum.conf`および[`yumrepo`のドキュメント](http://docs.puppetlabs.com/references/latest/type.html#yumrepo)をご参照ください。
+本章では以下のことを学びました。
+
+  * OS標準でないyumリポジトリを登録する方法
+
+通常の利用には、本章の説明で十分です。より細かい制御を必要とする場合は、`man yum.conf`および[`yumrepo`のドキュメント](http://docs.puppetlabs.com/references/latest/type.html#yumrepo)をご参照ください。
