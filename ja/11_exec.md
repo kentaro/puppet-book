@@ -2,7 +2,7 @@
 
 Puppetは
 [ドキュメント](http://docs.puppetlabs.com/references/latest/type.html)
-にある通り、たくさんのresource typeを標準で用意していますが、時にはそれでも足りないこともあるでしょう。`exec`を使うと、それら標準のresource typeだけではできないことが、任意のコマンドを実行することで可能となります。
+にある通り、たくさんのresource typeを標準で用意していますが、時にはそれでも足りないこともあります。`exec`を使うと、それら標準のresource typeだけではできないことが、任意のコマンドを実行することで可能となります。
 
 [http://docs.puppetlabs.com/references/latest/type.html#exec](http://docs.puppetlabs.com/references/latest/type.html#exec)
 
@@ -14,7 +14,7 @@ Puppetは
 
 ```
 $ cd puppet/
-$ mkdir -p exec
+$ mkdir exec
 $ cd exec/
 ```
 
@@ -69,7 +69,7 @@ ruby 2.0.0p0 (2013-02-24 revision 39474) [x86_64-linux]
 
 ### environmentとpath
 
-`exec`では、環境変数やコマンドのサーチパスが空の状態で、コマンドが実行されます。そのため、`environment`で適切な環境変数を指定し、`path`でサーチパスを指定する、あるいは、コマンドをフルパスで書く必要があります。
+`exec`では、環境変数やコマンドのサーチパスが空の状態でコマンドが実行されます。そのため、`environment`で適切な環境変数を指定し、`path`でサーチパスを指定する、あるいは、コマンドをフルパスで書く必要があります。
 
 `environment`は、以下のように配列で指定します。
 
@@ -102,7 +102,7 @@ Notice: Finished catalog run in 0.54 seconds
 
 と、再度実行されない状態にしなければなりません。下記の方法のいずれかによって、必ず冪等性を担保するようにしましょう。
 
-実行するコマンドが、なんらかのファイルやディレクトリを作成するようなものである場合、`create`でそのファイル/ディレクトリを指定することで、もしそれらが存在する場合は実行しないことで、冪等性を担保できます。上記のxbuildの例では、以下のように書きました。
+実行するコマンドが、なんらかのファイルやディレクトリを作成するようなものである場合、`create`でそのファイル/ディレクトリを指定することで、もしそれらが存在する場合は実行しないことにより、冪等性を担保できます。上記のxbuildの例では、以下のように書きました。
 
 ```
 creates => '/home/vagrant/local/xbuild',
@@ -121,6 +121,11 @@ unless => 'test -d /home/vagrant/local/xbuild'
 
 ### まとめ
 
-本章では、任意のコマンドを実行できる`exec`について学びました。便利な反面、冪等性を自分で担保しなければならない、扱いの難しいresource typeです。
+本章では以下のことを学びました。
 
-manifestを書いていて、`exec`を多用しているなと感じたら、たいていはmanifestの書き方に問題があります。`exec`を使わざるを得ない場合でも、第17章で解説するdefinitionでラップして、できるだけ生でexecを使わないようにする方がよいでしょう。
+  * 任意のコマンドを実行することのできる`exec`の使い方
+  * `creates`、`onlyif`、`unless`を使って冪等性を担保する方法
+
+`exec`は便利な反面、冪等性を自分で担保しなければならない、扱いの難しいresource typeです。
+
+manifestを書いていて、`exec`を多用しているなと感じたら、たいていはmanifestの書き方に問題があります。`exec`を使わざるを得ない場合でも、「第17章 manifestの共通部分をくくりだす」で解説するdefined typeでラップして、できるだけ生でexecを使わないようにする方がよいでしょう。
