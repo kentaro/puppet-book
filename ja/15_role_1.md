@@ -56,7 +56,7 @@ $ mkdir roles/log/{manifests,templates}
 $ mkdir manifests
 ```
 
-以上の作業により、最終的に以下のようなディレクトリ/ファイル構成ができあがっているはずです(`tree`コマンドは、MacOSXの場合、homebrewによってインストールできます)。
+以上の作業により、最終的に以下のようなディレクトリ/ファイル構成ができあがっているはずです。
 
 ```
 $ tree ../cluster
