@@ -1,6 +1,6 @@
 ## 第6章 パッケージをインストールする - package
 
-前章でmanifest作成・適用の流れをひと通りおさえたところで、本章からはしばらく、よく使うresource typeについてざっと見ていきましょう。
+前章まででmanifest作成・適用の流れをひと通りおさえたところで、本章からはしばらく、よく使うresource typeについてざっと見ていきましょう。
 
 まず最初に、パッケージのインストール状態を記述するのに使う`package`について説明します。
 
@@ -20,7 +20,7 @@ package { 'zsh':
 
 ### `ensure`で状態を記述する
 
-ここでひとつ念頭に留めておきたいのは、`package`はパッケージをインストールするためだけに使われるものではないということです。resouce typeは、あくまでもresourceの「状態」を記述するものであって、その「状態」には、インストールされていること以外にも、「インストールされていないこと」という場合もあり得ます。
+ここでひとつ念頭に留めておきたいのは、`package`はパッケージをインストールするためだけに使われるものではないということです。resouce typeは、あくまでもresourceの「状態」を記述するものであって、その「状態」には、インストールされていることの他に、「インストールされていないこと」という場合もあり得ます。
 
 ここで、どういう状態であるべきかを指定しているのが`ensure`というattributeです。この場合は、`installed`に指定されています。他には、
 
@@ -28,7 +28,7 @@ package { 'zsh':
   * `absent`: インストールされていない
   * `latest`: 常に最新のものがインストールされている
 
-などの状態を記述できます。
+という状態を記述できます。
 
 ### パッケージをまとめて記述したい
 
@@ -67,6 +67,10 @@ package { $packages:
 require => Package[$packages]
 ```
 
+このような書き方を、condensed formと呼びます。`package`に限らず、全てのresource typeにおいて、同様の記法を使えます。詳しくは、以下のドキュメントを参照してください。
+
+[http://docs.puppetlabs.com/puppet/latest/reference/lang_resources.html#condensed-forms](http://docs.puppetlabs.com/puppet/latest/reference/lang_resources.html#condensed-forms)
+
 ### ファイルからインストールしたい
 
 以下のように、`source`でファイル名を、`provider`で`rpm`を指定します。
@@ -74,7 +78,7 @@ require => Package[$packages]
 ```
 package { 'supervisor':
   ensure   => installed,
-  source   => '/tmp/supervisor-3.0a12-2.el6.noarch.rpm',
+  source   => '/path/to/supervisor-3.0a12-2.el6.noarch.rpm',
   provider => 'rpm',
 }
 ```
@@ -83,4 +87,11 @@ package { 'supervisor':
 
 ### まとめ
 
-本章では、パッケージのインストール状態を記述する`package`について、より詳しく見ていきました。
+本章では以下のことを学びました。
+
+  * パッケージの状態記述のためのresource typeである`package`の使い方
+  * `ensure`で状態を保証する
+  * 同じようなresource typeをまとめて記述するcondensed form
+  * ファイルからインストールする方法
+
+パッケージのインストールは、システム構築の基本中の基本ですね。`package`は頻繁に使うresource typeです。
