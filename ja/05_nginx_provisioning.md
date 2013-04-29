@@ -22,7 +22,7 @@ CentOSにnginxをインストールし、実際にHTTPサーバとしてユー�
 
 ```
 $ cd puppet/
-$ mkdir -p nginx
+$ mkdir nginx
 $ cd nginx/
 ```
 
@@ -33,7 +33,7 @@ yumrepo { 'nginx':
   descr    => 'nginx yum repository',
   baseurl  => 'http://nginx.org/packages/centos/6/$basearch/',
   enabled  => 1,
-  gpgcheck => 0
+  gpgcheck => 0,
 }
 
 package { 'nginx':
@@ -84,7 +84,7 @@ service { 'nginx':
 
 `$port = 8000`や`$name = "Puppet"`という箇所は、見ての通り、変数への代入を行っています。Puppetではこのように、manifestの中で変数を使えます。後述の`template()`といっしょに説明します。
 
-`[service](http://docs.puppetlabs.com/references/latest/type.html#service)`は、今回の例のnginxのような、サービスを提供するデーモンの、あるべき状態を記述するためのresource typeです。`enable`は、システム起動時にサービスとして起動するかどうかを、`ensure`は、常に起動した状態を保っているべきかどうかを記述するのに使います。nginxのようなデーモンは常に起動しておきたいのがふつうでしょうから、このように記述します。
+`[service](http://docs.puppetlabs.com/references/latest/type.html#service)`は、今回の例のnginxのような、サービスを提供するデーモンのあるべき状態を記述するためのresource typeです。`enable`は、システム起動時にサービスとして起動するかどうかを、`ensure`は、常に起動した状態を保っているべきかどうかを記述するのに使います。nginxのようなデーモンは常に起動しておきたいのがふつうでしょうから、このように記述します。
 
 ### テンプレートを用意する
 
@@ -149,13 +149,13 @@ Notice: Finished catalog run in 33.69 seconds
 エラーなく終了したら、nginxが実際に起動しているかどうか、確認してみましょう。
 
 ```
-[vagrant@puppet-book nginx]$ curl localhost:8000/
+[vagrant@puppet-book nginx]$ curl http://localhost:8000/
 Hello, Puppet!
 ```
 
 変数に代入した値がきちんと展開された文字列が、nginxによって返されました。
 
-### Relation
+### Relationship
 
 さて、nginxのmanifestを無事に適用できたところで、説明を先送りにした`require`と`notify`について、見ていきましょう。
 
