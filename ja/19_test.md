@@ -20,11 +20,11 @@ RSpecの強力な語彙とカスタマイズ性をフルに活かして、Puppet
 
 Puppetのmanifestレベルでのテストではなく、manifestが適用された後の、実際の状態をテストするため、より現実の状態に近いテストが可能です。また、そのことにより、Puppetのみならず、Chefやその他のツールによって構築したサーバのテストにも使える、汎用的なツールとなっています。
 
-### rootでログインできるようにする
+### SSHログインの設定
 
 さっそく、これまで書いてきたmanifestを適用したサーバに対するテストを書いていきましょう。
 
-serverspecは、テスト対象のホストにrootユーザでログインできることを前提としています。まずは、Vagrantの仮想ホストにrootユーザでログインできるように設定しましょう。
+serverspecは、対象ホストに対してテストを実行する方法を複数用意しています。今回は、テスト対象のホスト(ここではVagrantの仮想ホスト)にSSHログインし、コマンドを実行することでサーバ状態をテストする方法を採ります。まずは、Vagrantの仮想ホストに`ssh`コマンドでログインできるよう設定しましょう。
 
 今回のテスト対象は、前章までに引き続き、td-agentのクラスタです。`Vagrantfile`のあるディレクトリに移動します。
 
@@ -58,27 +58,16 @@ Host app.puppet-book.local
   LogLevel FATAL
 ```
 
-これを、`User`の項目を`root`に変更しましょう。これだけではrootユーザに公開鍵が登録されていないのでログインできません。仮想ホスト側での設定を行います。
-
-以下のようにして、vagrantユーザの`authorized_keys`をrootユーザの`/root/.ssh`にコピーしてやります。
+ログインできるか確かめてみましょう。
 
 ```
-$ vagrant ssh app
-[vagrant@app ~]$ sudo mkdir /root/.ssh
-[vagrant@app ~]$ sudo cp .ssh/authorized_keys /root/.ssh
-```
-
-以上により、rootユーザでログインできるようになります。
-
-```
-$ ssh root@app.puppet-book.local
+$ ssh app.puppet-book.local
+Last login: Mon Apr 29 10:59:02 2013 from 10.0.2.2
 Welcome to your Vagrant-built virtual machine.
-[root@app ~]#
+[vagrant@app ~]$
 ```
 
-`log`ロールの仮想ホストに対しても、同じように設定してください。
-
-また、これはあくまでもserverspecによるテストを行うためのサーバに対する設定であることを念のため付記しておきます。本番サーバに対してこのような設定は絶対にしないでください。
+ちゃんとログインできたようです。`log`ロールの仮想ホストに対しても、同じように設定してください。
 
 ### serverspecのセットアップ
 
