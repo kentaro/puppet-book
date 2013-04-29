@@ -18,7 +18,11 @@ td-agentは前述の通り、様々なログを収集・集約するためのツ
   1. なんらかのサービスがログを記録し、そのログを収集・送信する
   2. 各サーバから送信されてくるログを集約する
 
-のふたつがあるということになります。前章で作成したmoduleを拡張するかたちで、これら具体的な役割を記述していきます。
+のふたつがあるということになります。第12章で掲載した図を、確認のため再度掲載しておきます。
+
+![td-agentの構成図](../images/12-architecture.png)
+
+前章で作成したmoduleを拡張するかたちで、これら具体的な役割を記述していきます。
 
 ### ディレクトリを準備する
 
@@ -174,7 +178,7 @@ $ mkdir modules/nginx/manifests
 [vagrant@app vagrant]$ curl http://app.puppet-book.local/
 ```
 
-とアクセスすると、`/var/log/nginx/app.access.log`にアクセスログが書き出されていきます。
+とアクセスすると、`/var/log/nginx/app.access.log`にアクセスログが、LTSVフォーマットで書き出されていきます。
 
 以下の内容でそれぞれファイルを作成してください。
 
@@ -200,7 +204,7 @@ class nginx::install {
     descr    => 'nginx yum repository',
     baseurl  => 'http://nginx.org/packages/centos/6/$basearch/',
     enabled  => 1,
-    gpgcheck => 0
+    gpgcheck => 0,
   }
 
   package { 'nginx':
@@ -437,6 +441,10 @@ td-agent (pid  6118) is running...
 
 ### まとめ
 
-本章では、サーバの具体的な役割を、moduleの組合せとして定義していく方法を学びました。また、その役割自体もmoduleを組合せたmoduleとして定義したのでした。
+本章では以下のことを学びました。
+
+  * システムの具体的な役割をロールとして記述していくこと
+  * その際、既存のモジュールを拡張する形でmanifestを書いていくこと
+  * Vagrantで複数の仮想ホストを起動する
 
 仮想ホストを2台使うようになって、構成が急速に複雑化しましたが、やっていること自体はこれまでと変わるところはありません。じっくり取り組んでみてください。
