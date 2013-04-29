@@ -84,7 +84,7 @@ $ tree ../cluster
 
 これまでとは異なり、今回はクラスタ構成を採るため仮想ホストを複数台必要としますが、ここでもVagrantが活躍します。
 
-以下の内容で、`puppet/cluster`(上で作成した`cluster`ディレクトリ)の直下に、あらたに`Vagrantfile`を作成してください。
+以下の内容で、`puppet/cluster`(上で作成した`cluster`ディレクトリ)の直下に、あらたに`Vagrantfile`を作成してください(「第3章 Vagrantで試験環境を用意する」で説明したように、`vagrant init`コマンドにより`Vagrantfie`を作成してから、内容を編集するとよいでしょう)。
 
 ```
 Vagrant.configure("2") do |config|

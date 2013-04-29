@@ -26,7 +26,13 @@ Vagrantで利用できる仮想ホストのひな形(boxといいます)は、�
 
 [http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210.box](http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210.box)
 
-仮想ホストを起動するための設定は、非常に簡単です。適当なディレクトリに、以下の内容のファイルを`Vagrantfile`という名前で作成してください。
+仮想ホストを起動するための設定は、非常に簡単です。適当なディレクトリで、以下のコマンドを実行します。
+
+```
+$ vagrant init
+```
+
+すると、コマンドを実行したディレクトリに`Vagrantfile`というファイルが作成されます。中を見てみるといろいろ書かれていますが、本書の範囲内で必要とする設定はわずかです。設定の詳細については[Vagrantのドキュメント](http://docs.vagrantup.com/v2/)を見ていただくとして、ここではまず、以下の内容に変更してください。
 
 ```ruby
 Vagrant.configure("2") do |config|
