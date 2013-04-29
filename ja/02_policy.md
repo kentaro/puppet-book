@@ -91,7 +91,7 @@ node 'db001.example.com' {
   1. agent/master構成を採用しないので使えない
   2. node情報は別の場所で管理したい
 
-2については、具体的にはあとの章で説明する通り、[capistrano](http://capistranorb.com/)で実現します。本書の説明に従ってmanifestを書いていけば、capistrano + `puppet apply`コマンドで、小規模環境なら十分に機能する道具立てがそろいます。
+2については、具体的には「第20章 リモートホストに対してmanifestを適用する」で説明する通り、[capistrano](http://capistranorb.com/)で実現します。本書の説明に従ってmanifestを書いていけば、capistrano + `puppet apply`コマンドで、小規模環境なら十分に機能する道具立てがそろいます。
 
 ### 必ずしも標準的なディレクトリ構成を用いない
 
