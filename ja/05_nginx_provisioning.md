@@ -78,6 +78,8 @@ service { 'nginx':
 
 `[yumrepo](http://docs.puppetlabs.com/references/latest/type.html#yumrepo)`は、システムへのyumリポジトリの登録状態を記述するためのresource typeです。ここでは[nginxのインストールマニュアル](http://wiki.nginx.org/Install)に掲載されている公式のyumリポジトリを登録し、使用可能な状態にしています。
 
+ちなみに、ここでは`gpgcheck`を`0`とし、チェックしないよう設定していますが、これはnginxのリポジトリがGPGキーを提供していないためです。EPELのようにGPGキーを合わせて提供しているリポジトリを利用する場合は、極力GPGキーのチェックも行うほうがよいでしょう。詳しくは「第7章 yumリポジトリを登録する - yumrepo」で解説します。
+
 `[file](http://docs.puppetlabs.com/references/latest/type.html#file)`は、ファイルやディレクトリに関するresource typeです。ファイルやディレクトリが、指定されたattribute通りに存在しする(あるいは存在しない)という状態を記述するために使います。`owner`や`group`などの各attributeがどのような意味を持つかは、想像がつくでしょう。`template()`、および`require`と`notify`の各Attributeについては、後述します。
 
 `$port = 8000`や`$name = "Puppet"`という箇所は、見ての通り、変数への代入を行っています。Puppetではこのように、manifestの中で変数を使えます。後述の`template()`といっしょに説明します。
