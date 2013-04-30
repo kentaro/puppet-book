@@ -250,7 +250,17 @@ class nginx::service {
 modules/nginx/templates/my.conf:
 
 ```
-log_format ltsv "time:$time_local\thost:$remote_addr\tmethod:$request_method\tpath:$request_uri\tversion:$server_protocol\tstatus:$status\tsize:$body_bytes_sent\treferer:$http_referer\tua:$http_user_agent\trestime:$request_time\tustime:$upstream_response_time";
+log_format ltsv "time:$time_local\t"
+                "host:$remote_addr\t"
+                "method:$request_method\t"
+                "path:$request_uri\t"
+                "version:$server_protocol\t"
+                "status:$status\t"
+                "size:$body_bytes_sent\t"
+                "referer:$http_referer\t"
+                "ua:$http_user_agent\t"
+                "restime:$request_time\t"
+                "ustime:$upstream_response_time";
 
 server {
   listen       80;
