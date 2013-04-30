@@ -6,7 +6,7 @@
 
 ### Vagrantとは？
 
-[Vagrant](http://www.vagrantup.com/)は、[VirtualBox](https://www.virtualbox.org/)や[VMware](http://www.vmware.com/)、[Amazon EC2](http://aws.amazon.com/ec2/)といった仮想化ツールを、簡単にコントロールするためのラッパツールです。元々はVirtualBox専用に開発されたものでしたが、本書で使用するバージョン1.1以降は、[Providersという仕組み](http://docs.vagrantup.com/v2/providers/)を導入したことで、プラグインによってVirtulaBox以外の仮想化ツールにも対応するようになりました。
+[Vagrant](http://www.vagrantup.com/)は、[VirtualBox](https://www.virtualbox.org/)や[VMware](http://www.vmware.com/)、[Amazon EC2](http://aws.amazon.com/ec2/)といった仮想化ツールを、簡単にコントロールするためのラッパツールです。元々はVirtualBox専用に開発されたものでしたが、本書で使用するバージョン1.1以降は、[Providersという仕組み](http://docs.vagrantup.com/v2/providers/)を導入したことで、プラグインによってVirtualBox以外の仮想化ツールにも対応するようになりました。
 
 本書では、これまでVagrantでの利用実績が豊富なVirtualBoxを使っていくことにします。
 
