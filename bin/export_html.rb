@@ -6,7 +6,7 @@ require 'github/markdown'
 HEADER = <<HEAD
 <html>
 <head>
-<title>入門Puppet - Infrastructure as Code</title>
+<title>入門Puppet - Automate Your Infrastructure</title>
 <meta name="Author" content="Kentaro Kuribayashi">
 <meta name="DC.date.publication" content="2013-05">
 <meta name="DC.rights" content="2013 Kentaro Kuribayashi">

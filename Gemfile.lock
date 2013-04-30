@@ -2,6 +2,7 @@ GEM
   remote: http://rubygems.org/
   specs:
     github-markdown (0.5.3)
+    nokogiri (1.5.9)
     rake (0.9.6)
 
 PLATFORMS
@@ -9,4 +10,5 @@ PLATFORMS
 
 DEPENDENCIES
   github-markdown
+  nokogiri
   rake
