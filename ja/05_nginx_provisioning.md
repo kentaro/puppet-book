@@ -108,7 +108,7 @@ file { '/etc/nginx/conf.d/my.conf':
 
 ```
 server {
-  listen       <%= port %>
+  listen       <%= port %>;
   server_name  localhost;
 
   location / {
@@ -149,7 +149,7 @@ Notice: Finished catalog run in 33.69 seconds
 エラーなく終了したら、nginxが実際に起動しているかどうか、確認してみましょう。
 
 ```
-[vagrant@puppet-book nginx]$ curl http://localhost:8000/
+[vagrant@puppet-book nginx]$ curl http://localhost:80/
 Hello, Puppet!
 ```
 
