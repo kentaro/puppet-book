@@ -1,4 +1,4 @@
-## 第11章 任意のコマンドを実行しする - exec
+## 第11章 任意のコマンドを実行する - exec
 
 Puppetは[ドキュメント](http://docs.puppetlabs.com/references/latest/type.html)
 にある通り、たくさんのresource typeを標準で用意していますが、時にはそれでも足りないこともあります。`exec`を使うと、それら標準のresource typeだけではできないことが、任意のコマンドを実行することで可能となります。
