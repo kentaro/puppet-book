@@ -145,7 +145,7 @@ package { 'zsh':
 }
 ```
 
-Puppetでは、manifestによって記述する「システムのあるべき状態」を構成するひとつひとつを、resouceと呼びます。ここでは`package`とそれに続く記述によって、zshパッケージのインストールを行ってます。この場合の`package`を、resourceの具体的な種類という意味で、resouce typeと呼びます。
+Puppetでは、manifestによって記述する「システムのあるべき状態」を構成するひとつひとつを、resourceと呼びます。ここでは`package`とそれに続く記述によって、zshパッケージのインストールを行ってます。この場合の`package`を、resourceの具体的な種類という意味で、resource typeと呼びます。
 
 resource typeには、`package`以外にも、たとえば`file`や`user`など、システムの構成要素の多様性に応じて、たくさんのものが用意されています。どのようなものがあるのか、その一覧については、以下のドキュメントをご参照ください。
 

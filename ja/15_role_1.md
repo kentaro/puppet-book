@@ -309,7 +309,7 @@ class app {
 ここでいったん整理してみると、システム状態を記述するmanifestの全体は、
 
   1. システムの状態を表す最小単位としての各種resource type
-  2. resouce typeをグルーピングするclass
+  2. resource typeをグルーピングするclass
   3. classなどの集まりとしてのmodule
   4. moduleの組合せとしての役割(ロール)
 
