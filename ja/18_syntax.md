@@ -99,7 +99,7 @@ $plugin_name = "fluent-plugin-$title"
 
 図中にはNode Scopeについても描かれていますが、nodeは本書の範囲外なので、ここではスコープの種類を3つとしています。
 
-以下のような`scope.pp`というファイルがあったとします。これを`puppet apply scope.pp`として実行する場合、`$variable`はトップスコープに属することになります。
+以下のような`scope.pp`というファイルがあったとします。これを`puppet apply scope.pp`として実行する場合、`$top`はトップスコープに属することになります。
 
 ```
 $top = "Hello, Puppet!"
