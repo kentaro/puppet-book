@@ -64,7 +64,7 @@ exec { "fluent-gem install ${plugin_name}":
 
 > manifestを書いていて、`exec`を多用しているなと感じたら、たいていはmanifestの書き方に問題があります。`exec`を使わざるを得ない場合でも、「第17章 manifestの共通部分をくくりだす」で解説するdefined typeでラップして、できるだけ生でexecを使わないようにする方がよいでしょう。
 
-`exec`は、便利な反面、自分で冪等性を担保する必要があり、その取り扱いが難しいresouce typeです。また、`exec`が多用されているmanifestは、ぱっと見で何をやっているのかを判別するのが困難です。define typeを用いて適切に名前づけしてやることで、manifestの可読性を向上させ、再利用性を高めることができます。
+`exec`は、便利な反面、自分で冪等性を担保する必要があり、その取り扱いが難しいresource typeです。また、`exec`が多用されているmanifestは、ぱっと見で何をやっているのかを判別するのが困難です。define typeを用いて適切に名前づけしてやることで、manifestの可読性を向上させ、再利用性を高めることができます。
 
 さっそく、td-agentプラグインのインストール状態を記述するためのdefined typeを書いていきましょう。これはどのロールからも利用され得るものですので、moduleに追加します。以下の内容で、`modules/td-agent/manifests/plugin.pp`というファイルを作成してください。
 
@@ -108,11 +108,11 @@ define td-agent::plugin (
 }
 ```
 
-ここではふたつのことが行われています。まず、`td-agent::plugin`という名前であらたなresouce typeが定義されています。また、この名前とファイル名とを一致させる必要があるため、`modules/td-agent/manifests/plugin.pp`というファイルに、このdefined typeを記述したのでした。
+ここではふたつのことが行われています。まず、`td-agent::plugin`という名前であらたなresource typeが定義されています。また、この名前とファイル名とを一致させる必要があるため、`modules/td-agent/manifests/plugin.pp`というファイルに、このdefined typeを記述したのでした。
 
 また`$ensure = 'present'`という記述によって、このdefined typeを利用する時に使えるattributeを宣言しています。`= 'present'`の箇所は、もし`ensure`が指定されていなかった場合の、デフォルト値を示します。
 
-ふたつめは、`$title`という変数にresouceを宣言した時の名前が自動的に格納されるということです。具体的には、
+ふたつめは、`$title`という変数にresourceを宣言した時の名前が自動的に格納されるということです。具体的には、
 
 ```
 td-agent::plugin { 'extract_query_params': }
