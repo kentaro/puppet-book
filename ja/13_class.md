@@ -189,6 +189,7 @@ td-agent (pid  6651) is running...
 ログファイルをのぞいてみましょう。
 
 ```
+[vagrant@puppet-book class]$ cat /var/log/td-agent/td-agent.log
 2013-04-14 06:06:42 +0000 [info]: starting fluentd-0.10.33
 2013-04-14 06:06:42 +0000 [info]: reading config file path="/etc/td-agent/td-agent.conf"
 2013-04-14 06:06:42 +0000 [info]: using configuration file: <ROOT>
