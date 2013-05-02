@@ -38,7 +38,7 @@ Vagrantを使う場合は、manifestその他のファイルの作成・編集�
 上記サポートページで提供されているファイル群を利用する場合は、ホストOS上の適当なディレクトリで、以下のように`git clone`コマンドによってダウンロードしてください。
 
 ```
-$ git://github.com/kentaro/puppet-book-support.git
+$ git clone git://github.com/kentaro/puppet-book-support.git
 ```
 
 次章で説明する通り、VagrantはホストOSと仮想ホストとの間でディレクトリを共有する機能がありますので、上記で`git clone`したホストOS上のファイルが、仮想ホスト上からも見える状態になります。そのため、ファイルを仮想ホストへデプロイする手間なしに、ファイルの作成・編集はホストOS上で、その適用は仮想ホスト上で、といったことが可能です。
