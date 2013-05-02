@@ -39,6 +39,7 @@ Puppetは2005年のリリース以来、後発の[Chef](http://www.opscode.com/c
   * puboo-v1.0.2: 2013年4月30日
   * puboo-v1.0.3: 2013年5月2日
   * puboo-v1.0.4: 2013年5月2日
+  * puboo-v1.0.5: 2013年5月2日
 
 #### Kindle版
 
