@@ -82,7 +82,7 @@ service { 'nginx':
 
 [file](http://docs.puppetlabs.com/references/latest/type.html#file)は、ファイルやディレクトリに関するresource typeです。ファイルやディレクトリが、指定されたattribute通りに存在しする(あるいは存在しない)という状態を記述するために使います。`owner`や`group`などの各attributeがどのような意味を持つかは、想像がつくでしょう。`template()`、および`require`と`notify`の各Attributeについては、後述します。
 
-`$port = 8000`や`$name = "Puppet"`という箇所は、見ての通り、変数への代入を行っています。Puppetではこのように、manifestの中で変数を使えます。後述の`template()`といっしょに説明します。
+`$port = 80`や`$name = "Puppet"`という箇所は、見ての通り、変数への代入を行っています。Puppetではこのように、manifestの中で変数を使えます。後述の`template()`といっしょに説明します。
 
 [service](http://docs.puppetlabs.com/references/latest/type.html#service)は、今回の例のnginxのような、サービスを提供するデーモンのあるべき状態を記述するためのresource typeです。`enable`は、システム起動時にサービスとして起動するかどうかを、`ensure`は、常に起動した状態を保っているべきかどうかを記述するのに使います。nginxのようなデーモンは常に起動しておきたいのがふつうでしょうから、このように記述します。
 
