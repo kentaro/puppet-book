@@ -1,0 +1,64 @@
+# review-epubmaker向けの設定ファイルの例。
+# yamlファイルをReVIEWファイルのある場所に置き、
+# 「review-epubmaker yamlファイル」を実行すると、<bookname>.epubファイルが
+# 生成されます。
+# このファイルはUTF-8エンコーディングで記述してください。
+
+# ブック名(ファイル名になるもの。ASCII範囲の文字を使用)
+bookname: book
+# 書名
+booktitle: 入門Puppet
+# 著者
+aut: 栗林健太郎
+prt: 達人出版会
+prt_url:  http://tatsu-zine.com/
+#edt: 高橋征義
+date: 2013-05-02
+rights: |
+  (C) 2013 Kentaro Kuribayashi
+description: (略)
+# 以下はオプション
+# prt: 出版社
+# asn: Associated name
+# ant: Bibliographic antecedent
+# clb: 貢献者
+# edt: 編集者
+# dsr: デザイナ
+# ill: イラストレータ
+# pht: 撮影者
+# trl: 翻訳者
+# date: 刊行日
+# rights: 権利表記
+# description: ブックの説明
+#
+# coverfile: カバーページのbody要素内に挿入する内容を記述したファイル名
+coverfile: _cover.html
+# titlepagefile:
+#titlepagefile: _title.html
+# coverimage: 表紙用画像ファイル
+coverimage: cover.jpg
+# 固有IDに使用するドメイン
+urnid: http://tatsu-zine.com/books/puppet
+# CSSファイル (yamlファイルおよびReVIEWファイルを置いたディレクトリにあること
+stylesheet: main.css
+# 目次として抽出するレベル
+toclevel: 1
+# セクション番号を表示するレベル
+secnolevel: 1
+# EPUBのバージョン(現時点では2または3。デフォルトは2)
+epubversion: 3
+# HTMLのバージョン(現時点では4または5。デフォルトは4。epubversionを3にした場合は自動で5に設定される)
+htmlversion: 5
+# review-compileに渡すパラメータ
+params: --stylesheet=main.css --subdirmode --chapterlink
+##params: --stylesheet=main.css --subdirmode
+cover_linear: "yes"
+# 目次生成用？
+mytoc: true
+# 奥付生成用
+colophon: true
+texstyle: tatsumacro
+texdocumentclass: ["jsbook", "oneside,14pt"]
+pubhistory: |
+  2013年5月2日 v1.0.0版発行
+debug: true
