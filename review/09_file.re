@@ -53,7 +53,7 @@ file { '/tmp/hello_puppet.txt':
 
 さっそく実行してみましょう。
 
-//emlist{
+//cmd{
 [vagrant@puppet-book ~]$ cd /vagrant/puppet/file
 [vagrant@puppet-book file]$ sudo puppet apply content_string.pp
 Notice: /Stage[main]//File[/tmp/hello_puppet.txt]/ensure: defined content as '{md5}570be4af90660458e6c37633d5676ec2'Notice: Finished catalog run in 0.04 seconds
@@ -102,7 +102,7 @@ file { '/tmp/hello_puppet_template.txt':
 
 今回は、@<tt>{puppet apply}時に、テンプレートファイルを格納したディレクトリ(ここではカレントディレクトリ)を指定するため、@<tt>{--templatedir=.}として、オプション引数をわたして実行します。
 
-//emlist{
+//cmd{
 [vagrant@puppet-book file]$ sudo puppet apply --templatedir=.content_template.pp
 Notice: /Stage[main]//File[/tmp/hello_puppet_template.txt]/ensure: defined content as '{md5}6f459c8c8efb17c22040ffd76a4335d6'
 Notice: Finished catalog run in 0.04 seconds
@@ -217,7 +217,7 @@ file { '/etc/nginx/site-enabled/mysite.conf':
 
 以下のように、シンボリックリンクが作成できました。
 
-//emlist{
+//cmd{
 [vagrant@puppet-book file]$ ls -la /etc/nginx/site-enabled/
 total 8
 drwxr-xr-x 2 root root 4096 Apr  7 07:18 .

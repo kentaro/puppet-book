@@ -51,7 +51,7 @@ Vagrantを使う場合は、manifestその他のファイルの作成・編集�
 
 上記サポートページで提供されているファイル群を利用する場合は、ホストOS上の適当なディレクトリで、以下のように@<tt>{git clone}コマンドによってダウンロードしてください。
 
-//emlist{
+//cmd{
 $ git clone git://github.com/kentaro/puppet-book-support.git
 //}
 

@@ -23,7 +23,7 @@ moduleの詳細に入る前に、実際に内容を見る方が理解がはや�
 
 今回作成するmodule用のディレクトリを用意します。
 
-//emlist{
+//cmd{
 $ cd puppet/
 $ mkdir modules
 $ cd modules/
@@ -32,14 +32,14 @@ $ cd modules/
 
 まずは、module名と同名のディレクトリを作成しましょう。
 
-//emlist{
+//cmd{
 $ mkdir td-agent
 //}
 
 
 次に、manifestとテンプレートを格納するディレクトリを作成します。それぞれ、@<tt>{manifests}と@<tt>{templates}という名前にする必要があります。
 
-//emlist{
+//cmd{
 $ mkdir td-agent/manifests
 $ mkdir td-agent/templates
 //}
@@ -145,7 +145,7 @@ include conf.d/*.conf
 
 以上の作業を終えたら、以下の通りのディレクトリ/ファイル構成になっているはずです(@<tt>{tree}コマンドは、MacOSXの場合、homebrewによってインストールできます)。
 
-//emlist{
+//cmd{
 $ tree puppet/modules/puppet/modules/
 └── td-agent
     ├── manifests
@@ -204,7 +204,7 @@ moduleは、前述の通り、ファイル群を分類・整理するための�
 
 @<tt>{--execute}オプションに文字列をわたすと、manifestファイルに書かれたもの同様に実行することができます。今回は、これまでのような通常のmanifestを書くことなく、moduleのみ作成したので、@<tt>{--execute}オプションによってclassの@<tt>{include}を行います。
 
-//emlist{
+//cmd{
 [vagrant@puppet-book ~]$ cd /vagrant/puppet/modules/
 [vagrant@puppet-book modules]$ sudo puppet apply --modulepath=. --execute 'include td-agent'
 Notice: /Stage[main]/Td-agent::Install/Yumrepo[treasuredata]/descr: descr changed '' to 'treasuredata repo'

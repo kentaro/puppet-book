@@ -12,7 +12,7 @@
 
 実は、前章で準備したVagrantの仮想ホストには、最初からPuppetがインストールされています。そのため、Puppetを特別にインストールする必要はありません。@<tt>{vagrant ssh}で仮想ホストにログインして、確かめてみましょう。
 
-//emlist{
+//cmd{
 $ vagrant ssh
 Welcome to your Vagrant-built virtual machine.
 [vagrant@puppet-book ~]$ puppet --version
@@ -32,7 +32,7 @@ Welcome to your Vagrant-built virtual machine.
 
 本書の前提とする以外の、Puppetがインストールされていない環境では、以下のように@<tt>{gem}コマンドによってインストールできます。
 
-//emlist{
+//cmd{
 [vagrant@puppet-book ~]$ sudo gem install puppet --no-rdoc --no-ri
 Successfully installed facter-1.6.18
 Successfully installed json_pure-1.7.7
@@ -52,7 +52,7 @@ Successfully installed puppet-3.1.1
 
 仮想ホストにログインした状態で、@<tt>{/vagrant}ディレクトリに移動し、@<tt>{ls}コマンドを実行してみてください。
 
-//emlist{
+//cmd{
 [vagrant@puppet-book ~]$ cd /vagrant
 [vagrant@puppet-book vagrant]$ ls
 Vagrantfile  puppet
@@ -69,7 +69,7 @@ Vagrantfile  puppet
 
 まずはホストOS上で、manifestを置くためのディレクトリを作成しましょう。なお、このディレクトリの作成は必須ではなく、単純に、のちの章で作成するものとわけて置くほうが整理されていいだろうというだけの理由です。
 
-//emlist{
+//cmd{
 $ mkdir -p puppet/hello_puppet
 $ cd puppet/hello_puppet/
 //}
@@ -89,7 +89,7 @@ notice("Hello, World!")
 
 このmanifestを適用してみましょう。今度は、仮想ホスト上でmanifestファイルのあるディレクトリに移動してから、@<tt>{puppet apply}コマンドを実行します。
 
-//emlist{
+//cmd{
 [vagrant@puppet-book ~]$ cd /vagrant/puppet/hello_puppet/
 [vagrant@puppet-book hello_puppet]$ puppet apply hello_world.pp
 Notice: Scope(Class[main]): Hello, World!
@@ -116,7 +116,7 @@ package { 'zsh':
 
 今度は、新しく作成したファイルを引数にして@<tt>{puppet apply}を実行します。今度は、ログの表示だけではなく、システムへの変更(@<tt>{yum}コマンドによるパッケージのインストール)も行うので、@<tt>{sudo}権限で実行する必要があります。
 
-//emlist{
+//cmd{
 [vagrant@puppet-book hello_puppet]$ sudo puppet apply zsh.pp
 Notice: /Stage[main]//Package[zsh]/ensure: created
 Notice: Finished catalog run in 9.76 seconds
@@ -125,7 +125,7 @@ Notice: Finished catalog run in 9.76 seconds
 
 意図した通り、zshパッケージがインストールされたようですね。
 
-//emlist{
+//cmd{
 [vagrant@puppet-book hello_puppet]$ which zsh
 /bin/zsh
 //}

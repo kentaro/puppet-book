@@ -16,7 +16,7 @@ Puppetは@<href>{http://docs.puppetlabs.com/references/latest/type.html,ドキ�
 
 今回のmanifest用のディレクトリを用意します。
 
-//emlist{
+//cmd{
 $ cd puppet/
 $ mkdir exec
 $ cd exec/
@@ -52,7 +52,7 @@ exec { 'xbuild ruby':
 
 適用してみましょう。
 
-//emlist{
+//cmd{
 [vagrant@puppet-book ~]$ cd /vagrant/puppet/exec/
 [vagrant@puppet-book exec]$ sudo puppet apply xbuild.pp
 Notice: /Stage[main]//Exec[xbuild]/returns: executed successfully
@@ -63,7 +63,7 @@ Notice: Finished catalog run in 800.58 seconds
 
 以下の通り、指定したバージョンのRubyがインストールされたことが確認できます。
 
-//emlist{
+//cmd{
 [vagrant@puppet-book exec]$ /home/vagrant/local/ruby-2.0.0-p0/bin/ruby -v
 ruby 2.0.0p0 (2013-02-24 revision 39474) [x86_64-linux]
 //}
@@ -110,7 +110,7 @@ path => '/bin:/usr/bin:/home/vagrant/local/xbuild',
 
 @<tt>{exec}はなんでもできる反面、冪等性を自分で担保しなければなりません。すなわち、上記のmanifestを再度実行した場合、
 
-//emlist{
+//cmd{
 [vagrant@puppet-book exec]$ sudo puppet apply xbuild.pp
 Notice: Finished catalog run in 0.54 seconds
 //}

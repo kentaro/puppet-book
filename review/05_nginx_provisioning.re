@@ -27,7 +27,7 @@ CentOSにnginxをインストールし、実際にHTTPサーバとしてユー�
 
 次に、上記の1〜5を、manifestに落としていきます。まずは、本章で作成するmanifestを置くためのディレクトリを作成しましょう。
 
-//emlist{
+//cmd{
 $ cd puppet/
 $ mkdir nginx
 $ cd nginx/
@@ -153,7 +153,7 @@ Hello, <%= target %>!
 
 さて、manifestを作成したら、システムに適用してみましょう。今回は前回と違ってテンプレートも使うので、@<tt>{puppet apply}コマンド実行時に、@<tt>{--templatedir}オプションでカレントディレクトリ(@<tt>{.})を指定します。
 
-//emlist{
+//cmd{
 [vagrant@puppet-book ~]$ cd /vagrant/puppet/nginx
 [vagrant@puppet-book nginx]$ sudo puppet apply --templatedir=. nginx.pp
 Notice: /Stage[main]//Yumrepo[nginx]/descr: descr changed '' to 'nginx yum repository'
@@ -170,7 +170,7 @@ Notice: Finished catalog run in 33.69 seconds
 
 エラーなく終了したら、nginxが実際に起動しているかどうか、確認してみましょう。
 
-//emlist{
+//cmd{
 [vagrant@puppet-book nginx]$ curl http://localhost:80/
 Hello, Puppet!
 //}

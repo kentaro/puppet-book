@@ -45,7 +45,7 @@ class化の粒度は、上記の項目それぞれに対応させておく程度
 
 今回のmanifest用のディレクトリを用意します。
 
-//emlist{
+//cmd{
 $ cd puppet/
 $ mkdir class
 $ cd class/
@@ -188,7 +188,7 @@ class内部のresource type間の関係はこれまで通り@<tt>{require}や@<t
 
 @<tt>{--templatedir=.}を忘れずに引数にわたして、例によって@<tt>{puppet apply}を実行します。
 
-//emlist{
+//cmd{
 [vagrant@puppet-book ~]$ cd /vagrant/puppet/class/
 [vagrant@puppet-book class]$ sudo puppet apply --templatedir=. td-agent.pp
 Notice: /Stage[main]/Td-agent::Install/Yumrepo[treasuredata]/descr: descr changed '' to 'treasuredata repo'
@@ -205,7 +205,7 @@ Notice: Finished catalog run in 99.17 seconds
 
 td-agentのインストール、設定ファイルの配置、サービス起動まで、うまくいっているようですね。
 
-//emlist{
+//cmd{
 [vagrant@puppet-book class]$ sudo service td-agent status
 td-agent (pid  6651) is running...
 //}
@@ -215,14 +215,14 @@ td-agent (pid  6651) is running...
 
 ここでもう一歩ふみこんで、本当に意図通りに動いているかどうか、確かめてみましょう。@<tt>{fluent-cat}コマンドを使うと、任意のメッセージをfluentdに対して送信できます。以下の例では、@<tt>{{"hello":"puppet"\}}というJSON文字列を、@<tt>{debug.test}というタグをつけて、fluentdに送信します。
 
-//emlist{
+//cmd{
 [vagrant@puppet-book class]$ echo '{"hello":"puppet"}' | /usr/lib64/fluent/ruby/bin/fluent-cat debug.test
 //}
 
 
 ログファイルをのぞいてみましょう。
 
-//emlist{
+//cmd{
 [vagrant@puppet-book class]$ cat /var/log/td-agent/td-agent.log
 2013-04-14 06:06:42 +0000 [info]: starting fluentd-0.10.33
 2013-04-14 06:06:42 +0000 [info]: reading config file path="/etc/td-agent/td-agent.conf"

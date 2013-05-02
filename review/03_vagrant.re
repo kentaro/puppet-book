@@ -40,7 +40,7 @@ Vagrantで利用できる仮想ホストのひな形(boxといいます)は、�
 
 仮想ホストを起動するための設定は、非常に簡単です。適当なディレクトリで、以下のコマンドを実行します。
 
-//emlist{
+//cmd{
 $ vagrant init
 //}
 
@@ -67,7 +67,7 @@ end
 
 ファイルを作成したのと同じディレクトリで、@<tt>{vagrant up}コマンドを実行すると、仮想ホストが起動します。
 
-//emlist{
+//cmd{
 $ vagrant up
 Bringing machine 'default' up with 'virtualbox' provider...
 [default] Box 'centos-6.4-puppet' was not found. Fetching box from specified URL for
@@ -109,21 +109,21 @@ Successfully added box 'centos-6.4-puppet' with provider 'virtualbox'!
 
 以下のコマンドを実行すると、仮想ホストにSSHでログインできます。
 
-//emlist{
+//cmd{
 $ vagrant ssh
 //}
 
 
 また、のちの章では通常のsshコマンドによるログインが必要になりますので、以下のようにコマンドを実行して、準備しておいてください。
 
-//emlist{
+//cmd{
 $ vagrant ssh-config --host puppet-book.local >> ~/.ssh/config
 //}
 
 
 これで、いつものようにsshコマンドで仮想ホスト(ここではpuppet-book.localというホスト名を指定)にログインできます。
 
-//emlist{
+//cmd{
 $ ssh puppet-book.local
 //}
 
@@ -138,21 +138,21 @@ $ ssh puppet-book.local
 
 仮想ホストを停止するには@<tt>{halt}サブコマンドを、破棄(リセット)するには@<tt>{destroy}サブコマンドを使います。
 
-//emlist{
+//cmd{
 $ vagrant halt
 //}
 
 
 を実行すると一時停止、
 
-//emlist{
+//cmd{
 $ vagrant destroy
 //}
 
 
 で破棄(リセット)されます。再度、仮想ホストを起動したい場合は、最初と同じく
 
-//emlist{
+//cmd{
 $ vagrant up
 //}
 

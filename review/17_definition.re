@@ -173,7 +173,7 @@ td-agent::plugin { 'extract_query_params': }
 
 さっそく@<tt>{td-agent::plugin}を使ってみましょう。@<tt>{log}ロールのtd-agentに、プラグインがインストールされた状態の記述を追加します。
 
-//emlist{
+//cmd{
 $ cd puppet/cluster
 //}
 
@@ -215,7 +215,7 @@ class log::td-agent {
 
 さて、今度はmanifestを適用してみましょう。前回同様、@<tt>{log}ロールで@<tt>{puppet apply}を実行するだけです。
 
-//emlist{
+//cmd{
 [vagrant@log vagrant]$ sudo puppet apply --modulepath=modules:roles manifests/log.pp
 Notice: /Stage[main]/Log::Td-agent::Plugin/Td-agent::Plugin[extract_query_params]/Exec[fluent-gem install fluent-plugin-extract_query_params]/returns: executed successfully
 Notice: /Stage[main]/Td-agent::Service/Service[td-agent]: Triggered 'refresh' from 1 events
@@ -225,7 +225,7 @@ Notice: Finished catalog run in 28.99 seconds
 
 プラグインがインストールされているかどうか、@<tt>{fluent-gem list}コマンドで確認してみましょう。
 
-//emlist{
+//cmd{
 [vagrant@log vagrant]$ /usr/lib64/fluent/ruby/bin/fluent-gem list fluent-plugin-extract_query_params
 *** LOCAL GEMS ***
 
@@ -235,7 +235,7 @@ fluent-plugin-extract_query_params (0.0.2)
 
 冪等性が正しく担保されているかどうか、もう一度@<tt>{puppet apply}を実行することで確かめてみましょう。
 
-//emlist{
+//cmd{
 [vagrant@log vagrant]$ sudo puppet apply --modulepath=modules:roles manifests/log.pp
 Notice: Finished catalog run in 0.56 seconds
 //}
@@ -290,7 +290,7 @@ Notice: Finished catalog run in 1.41 seconds
 
 前回同様に、動作確認をしてみましょう。今回は、アクセスするURLにクエリパラメタを付与します。@<tt>{app}ロールの仮想ホストから、以下の通りコマンドを実行します。
 
-//emlist{
+//cmd{
 [vagrant@app vagrant]$ curl 'http://app.puppet-book.local/?foo=bar&baz=qux'
 Hello, Puppet!
 //}
@@ -298,7 +298,7 @@ Hello, Puppet!
 
 今度は@<tt>{log}ロールの仮想ホストにログインします。
 
-//emlist{
+//cmd{
 [vagrant@log vagrant]$ ls /var/log/td-agent/app/
 access.20130421.b4dad900a93dc7767
 //}
@@ -306,7 +306,7 @@ access.20130421.b4dad900a93dc7767
 
 ログファイルが作成されています。中身を見てみましょう。
 
-//emlist{
+//cmd{
 [vagrant@log vagrant]$ cat /var/log/td-agent/app/access.20130421.b4dad900a93dc7767
 2013-04-21T06:24:19+00:00       with_queries.forward.app.access {"time":"21/Apr/2013:06:24:19 +0000","host":"127.0.0.1","method":"GET","path":"/?foo=bar&baz=qux","version":"HTTP/1.1","status":"200","size":"15","referer":"-","ua":"curl/7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.13.6.0 zlib/1.2.3 libidn/1.18 libssh2/1.4.2","restime":"0.000","ustime":"-","foo":"bar","baz":"qux"}
 //}

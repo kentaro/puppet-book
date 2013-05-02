@@ -12,11 +12,12 @@
 
 
 さっそくユーザを作成してみましょう。例によって、今回のmanifest用のディレクトリを用意します。
-@<tt>{
+
+//cmd{
 $ cd puppet/
 $ mkdir user_group
 $ cd user_group/
-}
+//}
 
 
 以下の内容で、@<tt>{user.pp}というファイルを作成してください。
@@ -34,7 +35,7 @@ user { 'kentaro':
 
 @<tt>{pupply appet}で適用してみましょう。
 
-//emlist{
+//cmd{
 [vagrant@puppet-book user_group]$ sudo puppet apply user.pp
 Notice: /Stage[main]//User[kentaro]/ensure: created
 Notice: Finished catalog run in 0.11 seconds
@@ -43,7 +44,7 @@ Notice: Finished catalog run in 0.11 seconds
 
 以下の通りユーザが作成されたのが確認できます。
 
-//emlist{
+//cmd{
 [vagrant@puppet-book user_group]$ cat /etc/passwd | grep kentaro
 kentaro:x:502:503:kentaro:/home/kentaro:/bin/bash
 //}
@@ -71,7 +72,7 @@ group { 'developers':
 
 適用してみましょう。
 
-//emlist{
+//cmd{
 [vagrant@puppet-book user_group]$ sudo puppet apply group.pp
 Notice: /Stage[main]//Group[developers]/ensure: created
 Notice: Finished catalog run in 0.07 seconds
@@ -80,7 +81,7 @@ Notice: Finished catalog run in 0.07 seconds
 
 以下の通りグループが作成されたのが確認できます。
 
-//emlist{
+//cmd{
 [vagrant@puppet-book user_group]$ cat /etc/group | grep developers
 developers:x:999:
 //}
@@ -112,7 +113,7 @@ group { 'guest':
 
 上記では、antipopというユーザを作成し、かつ、guestというグループに追加された状態を記述しています。manifestを適用してみましょう。
 
-//emlist{
+//cmd{
 [vagrant@puppet-book user_group]$ sudo puppet apply add_user_to_group.pp
 Notice: /Stage[main]//Group[guest]/ensure: created
 Notice: /Stage[main]//User[antipop]/ensure: created
@@ -122,7 +123,7 @@ Notice: Finished catalog run in 0.11 seconds
 
 確認してみましょう。
 
-//emlist{
+//cmd{
 [vagrant@puppet-book user_group]$ cat /etc/passwd | grep antipop
 antipop:x:502:1000:antipop:/home/antipop:/bin/bash
 //}

@@ -40,7 +40,7 @@ serverspecは、対象ホストに対してテストを実行する方法を複�
 
 今回のテスト対象は、前章までに引き続き、td-agentのクラスタです。@<tt>{Vagrantfile}のあるディレクトリに移動します。
 
-//emlist{
+//cmd{
 $ cd puppet/cluster
 //}
 
@@ -77,7 +77,7 @@ Host app.puppet-book.local
 
 ログインできるか確かめてみましょう。
 
-//emlist{
+//cmd{
 $ ssh app.puppet-book.local
 Last login: Mon Apr 29 10:59:02 2013 from 10.0.2.2
 Welcome to your Vagrant-built virtual machine.
@@ -92,14 +92,14 @@ Welcome to your Vagrant-built virtual machine.
 
 まずはホストOSに、@<tt>{gem}コマンドでserverspecをインストールします。
 
-//emlist{
+//cmd{
 $ gem install serverspec
 //}
 
 
 @<tt>{serverspec-init}コマンドで、初期設定ファイルを作成します。プロンプトで環境についてたずねられるので、適宜解答してください。
 
-//emlist{
+//cmd{
 $ serverspec-init
 Select a backend type:
 
@@ -204,7 +204,7 @@ end
 
 再度、テストを実行します。
 
-//emlist{
+//cmd{
 $ rspec spec/app.puppet-book.local/nginx_spec.rb
 ...
 
@@ -242,7 +242,7 @@ end
 
 あらためて、テストを実行してみます。
 
-//emlist{
+//cmd{
 $ rspec spec/app.puppet-book.local/nginx_spec.rb
 ........
 
@@ -258,7 +258,7 @@ Finished in 0.2695 seconds
 
 テストが失敗した時、どういうことが起きるのでしょうか。確かめてみましょう。システムが誤った状態にあることを、故意にnginxを落とすことでエミュレートしてみます。
 
-//emlist{
+//cmd{
 $ vagrant ssh app
 [vagrant@app ~]$ sudo service nginx stop
 Stopping nginx:                                            [  OK  ]
@@ -267,7 +267,7 @@ Stopping nginx:                                            [  OK  ]
 
 この状態でテストを実行するとどうなるでしょうか。
 
-//emlist{
+//cmd{
 $ rspec spec/app.puppet-book.local/nginx_spec.rb
 ..FF....
 

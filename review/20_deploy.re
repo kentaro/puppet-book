@@ -28,21 +28,21 @@ capistranoはRuby製のデプロイツールで、Ruby on Railsアプリケー�
 
 まずは@<tt>{gem}コマンドにより、capistranoをインストールします。
 
-//emlist{
+//cmd{
 $ gem install capistrano
 //}
 
 
 また、capistranoの設定ファイルの中で使う@<tt>{aws-sdk}ライブラリも、ここでインストールしておきましょう。
 
-//emlist{
+//cmd{
 $ gem install aws-sdk
 //}
 
 
 次に、capistranoの設定ファイルを準備します。manifestのルートディレクトリで、@<tt>{capify}コマンドを実行してください(@<tt>{capify .}と、カレントディレクトリを指定するのを忘れないように)。
 
-//emlist{
+//cmd{
 $ capify .
 [add] writing './Capfile'
 [add] making directory './config'
@@ -190,7 +190,7 @@ export AWS_REGION='ホストを作成したリージョン'
 
 上記のファイルを@<tt>{source}コマンドによってあらかじめ読み込んでおきます。
 
-//emlist{
+//cmd{
 $ source aws_environment.sh
 //}
 
@@ -200,7 +200,7 @@ $ source aws_environment.sh
 
 この操作は、インスタンス作成直後にいちど行うだけでけっこうです(複数回実行しても問題ありません)。
 
-//emlist{
+//cmd{
 $ cap production deploy:setup
     triggering load callbacks
   * 2013-04-24 01:29:18 executing `production'
@@ -222,7 +222,7 @@ $ cap production deploy:setup
 
 次に、以下の通り@<tt>{puppet:apply:app}コマンドにより、リモートホスト(この場合は@<tt>{app}ロールのホストのみ)に対してmanifestを適用します。
 
-//emlist{
+//cmd{
 $ cap production puppet:apply:app
 //}
 

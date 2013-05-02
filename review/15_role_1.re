@@ -41,7 +41,7 @@ td-agentは前述の通り、様々なログを収集・集約するためのツ
 
 まず、今回のmanifestを配置するディレクトリを用意します。
 
-//emlist{
+//cmd{
 $ cd puppet/
 $ mkdir cluster
 $ cd cluster/
@@ -50,21 +50,21 @@ $ cd cluster/
 
 次に、前回作成したtd-agentのmoduleをコピーしてください(実際にmoduleを再利用する際はコピーする必要はありませんが、説明の都合上、前回のディレクトリとわけたいのでそうしてもらっています)。
 
-//emlist{
+//cmd{
 $ cp -R ../modules modules
 //}
 
 
 上記したふたつの役割を記述するmanifestを配置するために、@<tt>{roles}というディレクトリを作成しましょう。
 
-//emlist{
+//cmd{
 $  mkdir roles
 //}
 
 
 前述の「なんらかのサービスがログを記録し、そのログを収集・送信する」という役割のために@<tt>{app}、「各サーバから送信されてくるログを集約する」という役割のために@<tt>{log}というディレクトリを作成しましょう。同時に、それぞれのディレクトリの下に@<tt>{manifests}と@<tt>{templates}も作成します。
 
-//emlist{
+//cmd{
 $ mkdir roles/{app,log}
 $ mkdir roles/app/{manifests,templates}
 $ mkdir roles/log/{manifests,templates}
@@ -73,14 +73,14 @@ $ mkdir roles/log/{manifests,templates}
 
 最後に、@<tt>{roles}以下に定義したmanifestを実際に@<tt>{include}するファイルを置くために、@<tt>{manifests}というディレクトリを作成しましょう。
 
-//emlist{
+//cmd{
 $ mkdir manifests
 //}
 
 
 以上の作業により、最終的に以下のようなディレクトリ/ファイル構成ができあがっているはずです。
 
-//emlist{
+//cmd{
 $ tree ../cluster
 ../cluster
 ├── manifests
@@ -134,7 +134,7 @@ end
 
 いつものように@<tt>{vagrant up}するだけで、@<tt>{Vagrantfile}で指定した通り、@<tt>{app}と@<tt>{log}という名前で2台の仮想ホストが起動している様子が確認できます(便利ですね!)。
 
-//emlist{
+//cmd{
 $ vagrant up
 Bringing machine 'app' up with 'virtualbox' provider...
 [app] Importing base box 'centos-6.4-puppet'...
@@ -178,7 +178,7 @@ Bringing machine 'log' up with 'virtualbox' provider...
 
 ちなみに、@<tt>{app}と@<tt>{log}の仮想ホストをそれぞれ別々に@<tt>{vagrant}コマンドから扱いたい場合、
 
-//emlist{
+//cmd{
 $ vagrant up app
 //}
 
@@ -193,7 +193,7 @@ $ vagrant up app
 
 そのために、まずは第5章で作成したnginxのmanifestをmodule化します。
 
-//emlist{
+//cmd{
 $ mkdir modules/nginx
 $ mkdir modules/nginx/manifests
 //}
@@ -201,7 +201,7 @@ $ mkdir modules/nginx/manifests
 
 内容はほとんど第5章と同じですので、駆け足でいきます。nginxへのアクセスを@<href>{http://ltsv.org/,LTSVフォーマット}でログに記録するだけの、簡単な設定です。
 
-//emlist{
+//cmd{
 [vagrant@app vagrant]$ curl http://app.puppet-book.local/
 //}
 
@@ -464,7 +464,7 @@ include app
 
 @<tt>{vagrant ssh}に@<tt>{app}という引数をわたしてログインします。また、@<tt>{Vagrantfile}の場所がこれまでとは違うので、マウントされているディレクトリも異なります。注意してください。
 
-//emlist{
+//cmd{
 $ vagrant ssh app
 Welcome to your Vagrant-built virtual machine.
 [vagrant@app ~]$ cd /vagrant
@@ -474,7 +474,8 @@ Vagrantfile  modules  roles
 
 
 適用は、いつもの通り@<tt>{puppet apply}コマンドを使います。今回は、@<tt>{--modulepath}の引数に@<tt>{roles}ディレクトリを追加しています。役割を定義するmanifestも、実際にはmoduleを組合せたmoduleとして構成しているからです。
-@<tt>{
+
+//cmd{
 [vagrant@app vagrant]$ sudo puppet apply --modulepath=modules:roles manifests/app.pp
 Notice: /Stage[main]/Nginx::Install/Yumrepo[nginx]/descr: descr changed '' to 'nginx yum repository'
 Notice: /Stage[main]/Nginx::Install/Yumrepo[nginx]/baseurl: baseurl changed '' to 'http://nginx.org/packages/centos/6/$basearch/'
@@ -482,8 +483,8 @@ Notice: /Stage[main]/Nginx::Install/Yumrepo[nginx]/enabled: enabled changed '' t
 Notice: /Stage[main]/Nginx::Install/Yumrepo[nginx]/gpgcheck: gpgcheck changed '' to '0'Notice: /Stage[main]/Nginx::Install/Package[nginx]/ensure: created
 Notice: /Stage[main]/Nginx::Install/File[/var/log/nginx]/owner: owner changed 'root' to 'nginx'
 Notice: /Stage[main]/Nginx::Install/File[/var/log/nginx]/group: group changed 'root' to 'nginx'
-Notice: /Stage[main]/Nginx::Config/File[/usr/share/nginx/html/index.html]/content: content changed '{md5\}e3eb0a1df437f3f97a64aca5952c8ea0' to '{md5\}1db16ebfb21d376e5b2ae9d1eaf5b3c8'
-Notice: /Stage[main]/Nginx::Config/File[/etc/nginx/conf.d/my.conf]/ensure: defined content as '{md5\}0f2ddfb71fadb5571cdb578235054a99'
+Notice: /Stage[main]/Nginx::Config/File[/usr/share/nginx/html/index.html]/content: content changed '{md5}e3eb0a1df437f3f97a64aca5952c8ea0' to '{md5}1db16ebfb21d376e5b2ae9d1eaf5b3c8'
+Notice: /Stage[main]/Nginx::Config/File[/etc/nginx/conf.d/my.conf]/ensure: defined content as '{md5}0f2ddfb71fadb5571cdb578235054a99'
 Notice: /Stage[main]/Nginx::Service/Service[nginx]/ensure: ensure changed 'stopped' to 'running'
 Notice: /Stage[main]/Nginx::Service/Service[nginx]: Triggered 'refresh' from 1 events
 Notice: /Stage[main]/Td-agent::Install/Yumrepo[treasuredata]/descr: descr changed '' to 'treasuredata repo'
@@ -492,17 +493,17 @@ Notice: /Stage[main]/Td-agent::Install/Yumrepo[treasuredata]/enabled: enabled ch
 Notice: /Stage[main]/Td-agent::Install/Yumrepo[treasuredata]/gpgcheck: gpgcheck changed '' to '0'
 Notice: /Stage[main]/Td-agent::Install/Package[td-agent]/ensure: created
 Notice: /Stage[main]/Td-agent::Config/File[/etc/td-agent/conf.d]/ensure: created
-Notice: /Stage[main]/Td-agent::Config/File[/etc/td-agent/td-agent.conf]/content: content changed '{md5\}c61a851e347734f4500a9f7f373eed7f' to '{md5\}f3d4e2ffaec6ef9b67bd01171844fa60'
-Notice: /Stage[main]/App::Td-agent::Config/File[/etc/td-agent/conf.d/app.conf]/ensure: defined content as '{md5\}498cd8e61d1fb46897552422209259b9'
+Notice: /Stage[main]/Td-agent::Config/File[/etc/td-agent/td-agent.conf]/content: content changed '{md5}c61a851e347734f4500a9f7f373eed7f' to '{md5}f3d4e2ffaec6ef9b67bd01171844fa60'
+Notice: /Stage[main]/App::Td-agent::Config/File[/etc/td-agent/conf.d/app.conf]/ensure: defined content as '{md5}498cd8e61d1fb46897552422209259b9'
 Notice: /Stage[main]/Td-agent::Service/Service[td-agent]/ensure: ensure changed 'stopped' to 'running'
 Notice: /Stage[main]/Td-agent::Service/Service[td-agent]: Triggered 'refresh' from 1 events
 Notice: Finished catalog run in 98.93 seconds
-}
+//}
 
 
 実際にnginxとtd-agentが起動しているか、確認してみましょう。
 
-//emlist{
+//cmd{
 [vagrant@app vagrant]$ sudo service nginx status
 nginx (pid  5886) is running...
 [vagrant@app vagrant]$ sudo service td-agent status

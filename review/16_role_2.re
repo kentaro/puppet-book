@@ -25,7 +25,7 @@
 
 まずは前回作成したディレクトリを確認してみましょう。以下のようになっているはずです。
 
-//emlist{
+//cmd{
 $ cd puppet/cluster/
 $ tree
 .
@@ -90,7 +90,7 @@ class log {
 
 今回は、manifestを書き、td-agentの動作を検証することが目的ですので、いったんiptablesを無効にしておきましょう。「iptablesが無効になっている」という状態を定義するため、以下の通りmodulesを作成します。
 
-//emlist{
+//cmd{
 $ mkdir modules/iptables
 $ mkdir modules/iptables/manifests
 //}
@@ -206,7 +206,7 @@ include log
 
 最終的なディレクトリ構成は、以下のようになります。
 
-//emlist{
+//cmd{
 $ tree ../cluster
 ../cluster/
 ├── Vagrantfile
@@ -262,14 +262,14 @@ $ tree ../cluster
 
 まず、@<tt>{log}ロールの仮想ホストにログインします(仮想ホストが2台あってまぎらわしいので、間違えないよう気をつけてください)。
 
-//emlist{
+//cmd{
 $ vagrant ssh log
 //}
 
 
 @<tt>{puppet apply}でmanifestを適用しましょう。@<tt>{--modulepath=modules:roles}と、@<tt>{roles}ディレクトリも指定します。
 
-//emlist{
+//cmd{
 [vagrant@log ~]$ cd /vagrant
 [vagrant@log vagrant]$ sudo puppet apply --modulepath=modules:roles manifests/log.pp
 Notice: /Stage[main]/Iptables::Service/Service[iptables]/ensure: ensure changed 'running' to 'stopped'
@@ -290,7 +290,7 @@ Notice: Finished catalog run in 152.16 seconds
 
 td-agentが起動しているか確かめてみましょう。
 
-//emlist{
+//cmd{
 [vagrant@log vagrant]$ sudo service td-agent status
 td-agent (pid  6162) is running...
 //}
@@ -313,7 +313,7 @@ td-agent (pid  6162) is running...
 
 まず、@<tt>{app}ロールの仮想ホストで、@<tt>{http://app.puppet-book.local/}にアクセスしてみます。
 
-//emlist{
+//cmd{
 [vagrant@app vagrant]$ curl http://app.puppet-book.local/
 Hello, Puppet!
 //}
@@ -321,7 +321,7 @@ Hello, Puppet!
 
 ログを見てみましょう。
 
-//emlist{
+//cmd{
 [vagrant@app vagrant]$ cat /var/log/nginx/app.access.log
 time:20/Apr/2013:10:09:55 +0000 host:127.0.0.1  method:GET      path:/  version:HTTP/1.1        status:200    size:15 referer:-       ua:curl/7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.13.6.0 zlib/1.2.3 libidn/1.18 libssh2/1.4.2     restime:0.000   ustime:-
 //}
@@ -332,7 +332,7 @@ time:20/Apr/2013:10:09:55 +0000 host:127.0.0.1  method:GET      path:/  version:
 
 次に、今度は@<tt>{log}ホストにログインして、ログファイルのディレクトリをのぞいてみましょう。
 
-//emlist{
+//cmd{
 [vagrant@log vagrant]$ ls -la /var/log/td-agent/app
 total 12
 drwxr-xr-x 2 td-agent td-agent 4096 Apr 20 10:09 .
@@ -343,7 +343,7 @@ drwxr-xr-x 3 td-agent td-agent 4096 Apr 20 10:05 ..
 
 なにやらファイルができています。
 
-//emlist{
+//cmd{
 [vagrant@log vagrant]$ cat /var/log/td-agent/app/access.20130420.b4dac809922779494
 2013-04-20T10:09:55+00:00       forward.app.access      {"time":"20/Apr/2013:10:09:55 +0000","host":"127.0.0.1","method":"GET","path":"/","version":"HTTP/1.1","status":"200","size":"15","referer":"-","ua":"curl/7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.13.6.0 zlib/1.2.3 libidn/1.18 libssh2/1.4.2","restime":"0.000","ustime":"-"}
 //}
