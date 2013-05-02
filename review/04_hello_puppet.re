@@ -26,7 +26,7 @@ Welcome to your Vagrant-built virtual machine.
 以下、本書全体を通して、次の表記によりホストOS上と仮想ホスト上とでのコマンド実行を区別します(Vagrantを使わずに本書を読み進める場合は、適宜読み替えてください)。
 
  * @<tt>{$}のみで始まる行はホストOSでのコマンド実行
- * @<tt>{[vagrant@puppet-book ~]$}のように、@<tt>{[vagrant@ホスト名 ディレクトリ名]$}始まる行は仮想ホストでのコマンド実行
+ * @<tt>{[vagrant@puppet-book ~]$}のように、@<tt>{[vagrant@ホスト名 ディレクトリ名]$}から始まる行は仮想ホストでのコマンド実行
 
 
 
