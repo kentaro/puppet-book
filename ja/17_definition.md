@@ -173,11 +173,11 @@ class log::td-agent {
 }
 ```
 
-プラグインのインストール状態が変更にともなってtd-agentを再起動する必要がありますので、refresh relationshipも定義しておきます。
+プラグインのインストール状態の変更にともなってtd-agentを再起動する必要がありますので、refresh relationshipも定義しておきます。
 
 ### manifestを適用する
 
-さて、今度はmanifestを適用してみましょう。前回同様、`log`ロールで`puppet apply`を実行するだけです。
+さて、今度はmanifestを適用してみましょう。前回同様、`log`ロールで`puppet apply`を実行します。
 
 ```
 [vagrant@log vagrant]$ sudo puppet apply --modulepath=modules:roles manifests/log.pp
