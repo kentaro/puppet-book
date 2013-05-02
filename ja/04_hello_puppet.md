@@ -131,7 +131,7 @@ Puppetには、RAL(Resouce Abstraction Layer)という仕組みがあり、プ�
 notice("Hello, World!")
 ```
 
-この`notice`は、一般的な言語でいうところの「関数」と同じ働きをするもので、Puppetではfunctionと呼ばれています。この`notice`のように、Puppetはあらかじめいくつかのfuntionを提供しています。どのようなものがあるのか、その一覧については、以下のドキュメントをご参照ください。
+この`notice`は、一般的な言語でいうところの「関数」と同じ働きをするもので、Puppetではfunctionと呼ばれています。この`notice`のように、Puppetはあらかじめいくつかのfunctionを提供しています。どのようなものがあるのか、その一覧については、以下のドキュメントをご参照ください。
 
 [http://docs.puppetlabs.com/references/latest/function.html](http://docs.puppetlabs.com/references/latest/function.html)
 
