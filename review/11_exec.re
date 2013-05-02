@@ -1,5 +1,5 @@
 
-= 第11章 任意のコマンドを実行する - exec
+= 任意のコマンドを実行する - exec
 
 
 Puppetは@<href>{http://docs.puppetlabs.com/references/latest/type.html,ドキュメント}

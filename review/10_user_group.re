@@ -1,5 +1,5 @@
 
-= 第10章 ユーザやグループを作成する - user/group
+= ユーザやグループを作成する - user/group
 
 
 ユーザやグループの状態を記述するには、それぞれ@<tt>{user}と@<tt>{group}というresource typeを使います。

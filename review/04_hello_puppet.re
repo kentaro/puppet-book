@@ -1,5 +1,5 @@
 
-= 第4章 Hello, Puppet!
+= Hello, Puppet!
 
 
 開発環境も整ったところで、さっそくPuppetを始めましょう。本章では、定番の"Hello, World!"をPuppetで実行してみます。さらに、もうすこし実践的な例として、Puppetを使ってパッケージをインストールする方法を紹介します。

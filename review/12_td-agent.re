@@ -1,5 +1,5 @@
 
-= 第12章 td-agentのmanifestを書く
+= td-agentのmanifestを書く
 
 
 前章まででひと通りのresource typeを見てきたところで、本章からはいくつかの章にまたがって、さらに実践的なmanifestを書いていきます。取り上げる題材は、td-agentです。

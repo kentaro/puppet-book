@@ -1,5 +1,5 @@
 
-= 第1章 なぜPuppetが必要なのか？
+= なぜPuppetが必要なのか？
 
 
 @<href>{https://puppetlabs.com/,Puppet}は、サーバの構成管理を自動化するためのフレームワークです。2005年のリリース以来、@<href>{http://www.opscode.com/chef/,Chef}と並んで、その分野におけるスタンダードなフレームワークとして、広く使われています。
