@@ -50,12 +50,31 @@
 %\renewcommand{\reviewcolumnhead}[2]{%
 %{\noindent\large ■#2}}
 
-%%table
-%\renewenvironment{reviewtable}[1]{%
-%  \begin{center}\scriptsize\setlength{\baselineskip}{1.2zw}
-%    \begin{tabular}{#1}}{%
-%    \end{tabular}
-%  \end{center}}
+\renewenvironment{shadedb}{%
+  \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+  \colorbox{shadecolorb}{##1}\hskip-\fboxsep
+      % There is no \@totalrightmargin, so:
+      \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+  \MakeFramed {\advance\hsize-\width 
+    \@totalleftmargin\z@ \linewidth\hsize
+    \@setminipage}%
+ }{\unskip\@minipagefalse\endMakeFramed}
+
+\newenvironment{shadedc}{%
+  \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+  \colorbox{shadecolor}{##1}\hskip-\fboxsep
+      % There is no \@totalrightmargin, so:
+      \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+  \MakeFramed {\advance\hsize-\width 
+    \@totalleftmargin\z@ \linewidth\hsize
+    \@setminipage}%
+ }{\unskip\@minipagefalse\endMakeFramed}
+
+\renewenvironment{reviewemlist}{%
+  \medskip\begin{shadedc}\begin{alltt}\small}{\end{alltt}\end{shadedc}\medskip}
+
+\renewenvironment{reviewcmd}{%
+  \color{white}\medskip\begin{shadedb}\begin{alltt}\small}{\end{alltt}\end{shadedb}\medskip}
 
 \def\@makechapterhead#1{%
   \vspace*{0.5\Cvs}% 欧文は50pt
