@@ -28,7 +28,7 @@ p, ul, ol, dl, pre, table {
 h1 {
     margin: 0 0 3em;
     padding: 0.5em 0 0;
-    border-top: 14px #fd8608 solid;
+    border-top: 14px #969cbd solid;
     text-align: left;
     font-size: 1.875em;
     font-weight: bold;
@@ -37,7 +37,7 @@ h1 {
 h2 {
     margin: 3em 0 0.5em;
     padding: 0.5em 0 0;
-    border-top: 2px #fd8608 solid;
+    border-top: 2px #969cbd solid;
     text-align: left;
     font-size: 1.5em;
     font-weight: bold;
@@ -177,7 +177,7 @@ div.code, div.caption-code, div.source-code, div.emlist-code, div.emlistnum-code
     padding: 0;
 }
 div.emlist-code p.caption {
-    border-left: 7px solid #fd8608;
+    border-left: 7px solid #969cbd;
 }
 pre.emlist, pre.source, pre.list {
     margin: 0;
@@ -247,7 +247,7 @@ div.colophon p {
 }
 div.colophon p.title {
     font-size: 1.5em;
-    border-bottom: 2px #fd8608 solid;
+    border-bottom: 2px #969cbd solid;
 }
 div.colophon table {
     margin: 1em 0 2em;
