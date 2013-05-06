@@ -1,12 +1,16 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    epzip (0.8.0)
+      rubyzip (>= 0.9.4)
     github-markdown (0.5.3)
     rake (0.9.6)
+    rubyzip (0.9.9)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  epzip
   github-markdown
   rake
