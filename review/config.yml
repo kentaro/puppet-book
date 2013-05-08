@@ -7,13 +7,13 @@
 # ブック名(ファイル名になるもの。ASCII範囲の文字を使用)
 bookname: book
 # 書名
-booktitle: 入門Puppet
+booktitle: 入門Puppet - Automate Your Infrastructure
 # 著者
 aut: 栗林健太郎
 prt: 達人出版会
 prt_url:  http://tatsu-zine.com/
 #edt: 高橋征義
-date: 2013-05-02
+date: 2013-05-09
 rights: |
   (C) 2013 Kentaro Kuribayashi
 description: (略)
@@ -60,5 +60,5 @@ colophon: true
 texstyle: tatsumacro
 texdocumentclass: ["jsbook", "oneside,14pt"]
 pubhistory: |
-  2013年5月2日 v1.0.0版発行
+  2013年5月9日 v1.0.0版発行
 debug: true

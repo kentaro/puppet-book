@@ -62,6 +62,11 @@ Puppetは2005年のリリース以来、後発の@<href>{http://www.opscode.com/
  * kindle-v1.0.1: 2013年5月2日
 
 
+=== 達人出版会版
+
+ * tatsu-zine-v1.0.0: 2013年5月9日
+
+
 == 筆者について
 
 
