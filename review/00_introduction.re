@@ -53,6 +53,8 @@ Puppetは2005年のリリース以来、後発の@<href>{http://www.opscode.com/
  * puboo-v1.0.4: 2013年5月2日
  * puboo-v1.0.5: 2013年5月2日
  * puboo-v1.0.6: 2013年5月2日
+ * puboo-v1.0.7: 2013年5月6日
+ * puboo-v1.0.8: 2013年5月6日
 
 
 === Kindle版
