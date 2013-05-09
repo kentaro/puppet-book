@@ -48,6 +48,10 @@ Puppetは2005年のリリース以来、後発の[Chef](http://www.opscode.com/c
 
   * kindle-v1.0.1: 2013年5月2日
 
+#### 達人出版会版
+
+  * tatsu-zine-v1.0.0: 2013年5月9日
+
 ### 筆者について
 
 栗林健太郎。ネット上では「antipop/kentaro/あんちぽ」として知られる。市役所職員、株式会社はてな勤務を経て、現在は株式会社paperboy&co.で技術基盤整備エンジニアとして勤務。Perl MongerでRubyist、時々ぺちぱー。[http://kentarok.org/](http://kentarok.org/)
