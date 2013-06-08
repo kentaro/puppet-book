@@ -127,10 +127,10 @@ include conf.d/*.conf
 </source>
 ```
 
-以上の作業を終えたら、以下の通りのディレクトリ/ファイル構成になっているはずです(`tree`コマンドは、MacOSXの場合、homebrewによってインストールできます)。
+以上の作業を終えたら、以下の通りのディレクトリ/ファイル構成になっているはずです(`tree`コマンドは、Mac OS Xの場合、homebrewによってインストールできます)。
 
 ```
-$ tree puppet/modules/puppet/modules/
+$ tree puppet/modules/
 └── td-agent
     ├── manifests
     │   ├── config.pp
