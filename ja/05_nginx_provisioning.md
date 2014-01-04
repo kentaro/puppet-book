@@ -159,7 +159,7 @@ Hello, Puppet!
 
 さて、nginxのmanifestを無事に適用できたところで、説明を先送りにした`require`と`notify`について、見ていきましょう。
 
-今回は、`yumrepo`、`package`、`file`、`service`という、4つのresource typeを使ってmanifestを記述しました。それぞれのresource typeによって記述されたresourceは、任意の順番で個別に存在するのはなく、次の順番で依存関係を持っています。
+今回は、`yumrepo`、`package`、`file`、`service`という、4つのresource typeを使ってmanifestを記述しました。それぞれのresource typeによって記述されたresourceは、任意の順番で個別に存在するのではなく、次の順番で依存関係を持っています。
 
   1. yumリポジトリを登録する
   2. nginxパッケージをインストールする
