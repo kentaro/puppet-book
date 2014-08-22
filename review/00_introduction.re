@@ -21,9 +21,9 @@ Puppetは2005年のリリース以来、後発の@<href>{http://www.opscode.com/
 
 本書執筆時の、筆者のシステム環境は以下の通りです。
 
- * 作業環境: Mac OSX 10.8.2 + ruby 2.0.0
+ * 作業環境: Mac OSX 10.9.4 + ruby 2.0.0
  * 本番環境: Amazon Linux AMI 2013.03 + ruby 1.8.7
- * 開発環境: Vagrant 1.1.5 + CentOS 6.4 + ruby 1.8.7
+ * 開発環境: Vagrant 1.6.3 + CentOS 6.5 + ruby 1.8.7
  * Puppet: 3.1.1
 
 
@@ -70,4 +70,4 @@ Puppetは2005年のリリース以来、後発の@<href>{http://www.opscode.com/
 == 筆者について
 
 
-栗林健太郎。ネット上では「antipop/kentaro/あんちぽ」として知られる。市役所職員、株式会社はてな勤務を経て、現在は株式会社paperboy&co.で技術基盤整備エンジニアとして勤務。Perl MongerでRubyist、時々ぺちぱー。@<href>{http://kentarok.org/,http://kentarok.org/}
+栗林健太郎。ネット上では「antipop/kentaro/あんちぽ」として知られる。市役所職員、株式会社はてな勤務を経て、現在は株式会社GMOペパボで技術責任者として勤務。Perl MongerでRubyist、時々ぺちぱー。@<href>{http://kentarok.org/,http://kentarok.org/}
