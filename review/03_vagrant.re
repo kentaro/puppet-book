@@ -24,7 +24,7 @@
 まずはVirtualBoxをインストールしましょう。@<href>{https://www.virtualbox.org/wiki/Downloads,VirtualBoxのダウンロードページ}からお使いの環境にあったパッケージをダウンロードし、インストーラの指示に従ってインストールしてください。
 
 
-VirtualBoxのインストールが終わったら、今度はVagrantをインストールします。@<href>{http://downloads.vagrantup.com/,Vagrantのダウンロードページ}からお使いの環境にあったパッケージをダウンロードしてください。その際、本書の環境と合わせるため、1.1.0以上のバージョンをダウンロードするようにしてください。その後、インストーラの指示に従ってインストールします。
+VirtualBoxのインストールが終わったら、今度はVagrantをインストールします。@<href>{http://www.vagrantup.com/downloads.html,Vagrantのダウンロードページ}からお使いの環境にあったパッケージをダウンロードしてください。その際、本書の環境と合わせるため、1.6.3以上のバージョンをダウンロードするようにしてください。その後、インストーラの指示に従ってインストールします。
 
 == 仮想ホストの起動
 
@@ -32,10 +32,10 @@ VirtualBoxのインストールが終わったら、今度はVagrantをインス
 Vagrantで利用できる仮想ホストのひな形(boxといいます)は、有志により様々なディストリビューションのものが用意されています(@<href>{http://www.vagrantbox.es/,http://www.vagrantbox.es/})。また、Puppet提供元のPuppet Labsからも、様々なディストリビューションのboxが提供されています(@<href>{http://puppet-vagrant-boxes.puppetlabs.com/,http://puppet-vagrant-boxes.puppetlabs.com/})。
 
 
-本書では、Puppet Labsが提供するCentOS 6.4のboxを利用します。
+本書では、Puppet Labsが提供するCentOS 6.5のboxを利用します。
 
 
-@<href>{http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210.box,http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210.box}
+@<href>{http://puppet-vagrant-boxes.puppetlabs.com/centos-65-x64-virtualbox-puppet.box,http://puppet-vagrant-boxes.puppetlabs.com/centos-65-x64-virtualbox-puppet.box}
 
 
 仮想ホストを起動するための設定は、非常に簡単です。適当なディレクトリで、以下のコマンドを実行します。
@@ -49,10 +49,11 @@ $ vagrant init
 
 #@# lang: ruby
 //emlist{
-Vagrant.configure("2") do |config|
-  config.vm.box      = "centos-6.4-puppet"
-  config.vm.box_url  = "http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210.box"
-  config.vm.hostname = "puppet-book.local"
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "centos-6.5-puppet"
+  config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-65-x64-virt"
 end
 //}
 
@@ -70,32 +71,32 @@ end
 //cmd{
 $ vagrant up
 Bringing machine 'default' up with 'virtualbox' provider...
-[default] Box 'centos-6.4-puppet' was not found. Fetching box from specified URL for
-the provider 'virtualbox'. Note that if the URL does not have
-a box for this provider, you should interrupt Vagrant now and add
-the box yourself. Otherwise Vagrant will attempt to download the
-full box prior to discovering this error.
-Downloading with Vagrant::Downloaders::HTTP...
-Downloading box: http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210.box
-Extracting box...
-Cleaning up downloaded box...
-Successfully added box 'centos-6.4-puppet' with provider 'virtualbox'!
-[default] Importing base box 'centos-6.4-puppet'...
-[default] Matching MAC address for NAT networking...
-[default] Setting the name of the VM...
-[default] Clearing any previously set forwarded ports...
-[default] Creating shared folders metadata...
-[default] Clearing any previously set network interfaces...
-[default] Preparing network interfaces based on configuration...
-[default] Forwarding ports...
-[default] -- 22 => 2222 (adapter 1)
-[default] Booting VM...
-[default] Waiting for VM to boot. This can take a few minutes.
-[default] VM booted and ready for use!
-[default] Setting hostname...
-[default] Configuring and enabling network interfaces...
-[default] Mounting shared folders...
-[default] -- /vagrant
+==> default: Box 'centos-6.5-puppet' could not be found. Attempting to find and install...
+    default: Box Provider: virtualbox
+    default: Box Version: >= 0
+==> default: Adding box 'centos-6.5-puppet' (v0) for provider: virtualbox
+    default: Downloading: http://puppet-vagrant-boxes.puppetlabs.com/centos-65-x64-virtualbox-puppet.box
+==> default: Successfully added box 'centos-6.5-puppet' (v0) for 'virtualbox'!
+==> default: Importing base box 'centos-6.5-puppet'...
+==> default: Matching MAC address for NAT networking...
+==> default: Setting the name of the VM: puppet-book-sample_default_1408692301409_48546
+==> default: Fixed port collision for 22 => 2222. Now on port 2200.
+==> default: Clearing any previously set network interfaces...
+==> default: Preparing network interfaces based on configuration...
+    default: Adapter 1: nat
+==> default: Forwarding ports...
+    default: 22 => 2200 (adapter 1)
+==> default: Booting VM...
+==> default: Waiting for machine to boot. This may take a few minutes...
+    default: SSH address: 127.0.0.1:2200
+    default: SSH username: vagrant
+    default: SSH auth method: private key
+    default: Warning: Connection timeout. Retrying...
+==> default: Machine booted and ready!
+==> default: Checking for guest additions in VM...
+==> default: Setting hostname...
+==> default: Mounting shared folders...
+    default: /vagrant => /Users/your-username/puppet-book-sample
 //}
 
 
