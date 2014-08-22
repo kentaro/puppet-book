@@ -16,11 +16,11 @@
 $ vagrant ssh
 Welcome to your Vagrant-built virtual machine.
 [vagrant@puppet-book ~]$ puppet --version
-3.1.1
+3.4.2
 //}
 
 
-本書執筆時点で最新のバージョン、3.1.1が既に入っているのを確認できます。
+本書執筆時点で最新のバージョンは3.6.2ですが、本書ではバージョン3.4.2のまま進めます。
 
 
 以下、本書全体を通して、次の表記によりホストOS上と仮想ホスト上とでのコマンド実行を区別します(Vagrantを使わずに本書を読み進める場合は、適宜読み替えてください)。
@@ -33,11 +33,11 @@ Welcome to your Vagrant-built virtual machine.
 本書の前提とする以外の、Puppetがインストールされていない環境では、以下のように@<tt>{gem}コマンドによってインストールできます。
 
 //cmd{
-[vagrant@puppet-book ~]$ sudo gem install puppet --no-rdoc --no-ri
-Successfully installed facter-1.6.18
-Successfully installed json_pure-1.7.7
-Successfully installed hiera-1.2.0
-Successfully installed puppet-3.1.1
+[vagrant@puppet-book ~]$ sudo gem install puppet -v 3.4.2 --no-rdoc --no-ri
+Successfully installed facter-1.7.6
+Successfully installed json_pure-1.8.1
+Successfully installed hiera-1.3.4
+Successfully installed puppet-3.4.2
 4 gems installed
 //}
 
@@ -93,7 +93,8 @@ notice("Hello, World!")
 [vagrant@puppet-book ~]$ cd /vagrant/puppet/hello_puppet/
 [vagrant@puppet-book hello_puppet]$ puppet apply hello_world.pp
 Notice: Scope(Class[main]): Hello, World!
-Notice: Finished catalog run in 0.03 seconds
+Notice: Compiled catalog for puppet-book.local in environment production in 0.05 seconds
+Notice: Finished catalog run in 0.02 seconds
 //}
 
 
@@ -118,8 +119,9 @@ package { 'zsh':
 
 //cmd{
 [vagrant@puppet-book hello_puppet]$ sudo puppet apply zsh.pp
-Notice: /Stage[main]//Package[zsh]/ensure: created
-Notice: Finished catalog run in 9.76 seconds
+Notice: Compiled catalog for puppet-book.local in environment production in 0.28 seconds
+Notice: /Stage[main]/Main/Package[zsh]/ensure: created
+Notice: Finished catalog run in 33.10 seconds
 //}
 
 
