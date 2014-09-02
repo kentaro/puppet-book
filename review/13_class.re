@@ -67,9 +67,9 @@ class td-agent {
 
 class td-agent::install {
   yumrepo { 'treasuredata':
-    name     => 'treasuredata',
-    descr    => 'treasuredata repo',
-    baseurl  => 'http://packages.treasure-data.com/redhat/$basearch/',
+    name     => 'TreasureData',
+    descr    => 'TreasureData repo',
+    baseurl  => 'http://packages.treasuredata.com/redhat/$basearch',
     enabled  => 1,
     gpgcheck => 0,
   }
