@@ -82,7 +82,7 @@ class td-agent::install {
 
 class td-agent::config {
   file { '/etc/td-agent/td-agent.conf':
-    content => template("td-agent.conf"),
+    content => template('td-agent.conf'),
   }
 }
 
