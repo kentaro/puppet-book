@@ -37,8 +37,9 @@ user { 'kentaro':
 
 //cmd{
 [vagrant@puppet-book user_group]$ sudo puppet apply user.pp
-Notice: /Stage[main]//User[kentaro]/ensure: created
-Notice: Finished catalog run in 0.11 seconds
+Notice: Compiled catalog for puppet-book.local in environment production in 0.10 seconds
+Notice: /Stage[main]/Main/User[kentaro]/ensure: created
+Notice: Finished catalog run in 0.09 seconds
 //}
 
 
@@ -74,7 +75,8 @@ group { 'developers':
 
 //cmd{
 [vagrant@puppet-book user_group]$ sudo puppet apply group.pp
-Notice: /Stage[main]//Group[developers]/ensure: created
+Notice: Compiled catalog for puppet-book.local in environment production in 0.04 seconds
+Notice: /Stage[main]/Main/Group[developers]/ensure: created
 Notice: Finished catalog run in 0.07 seconds
 //}
 
@@ -115,9 +117,10 @@ group { 'guest':
 
 //cmd{
 [vagrant@puppet-book user_group]$ sudo puppet apply add_user_to_group.pp
-Notice: /Stage[main]//Group[guest]/ensure: created
-Notice: /Stage[main]//User[antipop]/ensure: created
-Notice: Finished catalog run in 0.11 seconds
+Notice: Compiled catalog for puppet-book.local in environment production in 0.14 seconds
+Notice: /Stage[main]/Main/Group[guest]/ensure: created
+Notice: /Stage[main]/Main/User[antipop]/ensure: created
+Notice: Finished catalog run in 0.09 seconds
 //}
 
 

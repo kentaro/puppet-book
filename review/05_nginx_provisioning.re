@@ -39,7 +39,7 @@ $ cd nginx/
 //emlist{
 yumrepo { 'nginx':
   descr    => 'nginx yum repository',
-  baseurl  => 'http://nginx.org/packages/centos/6/$basearch/',
+  baseurl  => 'http://nginx.org/packages/centos/$releasever/$basearch/',
   enabled  => 1,
   gpgcheck => 0,
 }
@@ -125,7 +125,7 @@ file { '/etc/nginx/conf.d/my.conf':
 
 //emlist{
 server {
-  listen       <%= port %>;
+  listen       <%= @port %>;
   server_name  localhost;
 
   location / {
@@ -136,17 +136,17 @@ server {
 //}
 
 
-この@<tt>{<%= port %>}の箇所が、erbの変数展開の記法として評価され、manifestで@<tt>{$port = 80}と記述されている内容がうめこまれます。
+この@<tt>{<%= @port %>}の箇所が、erbの変数展開の記法として評価され、manifestで@<tt>{$port = 80}と記述されている内容がうめこまれます。
 
 
 同様に、@<tt>{index.html}というファイルを、以下の通り作成してください。
 
 //emlist{
-Hello, <%= target %>!
+Hello, <%= @target %>!
 //}
 
 
-このファイル内の@<tt>{<%= target %>}も、同名変数@<tt>{$target}の値に展開されます。
+このファイル内の@<tt>{<%= @target %>}も、同名変数@<tt>{$target}の値に展開されます。
 
 == manifestを適用する
 
@@ -154,17 +154,17 @@ Hello, <%= target %>!
 さて、manifestを作成したら、システムに適用してみましょう。今回は前回と違ってテンプレートも使うので、@<tt>{puppet apply}コマンド実行時に、@<tt>{--templatedir}オプションでカレントディレクトリ(@<tt>{.})を指定します。
 
 //cmd{
-[vagrant@puppet-book ~]$ cd /vagrant/puppet/nginx
 [vagrant@puppet-book nginx]$ sudo puppet apply --templatedir=. nginx.pp
-Notice: /Stage[main]//Yumrepo[nginx]/descr: descr changed '' to 'nginx yum repository'
-Notice: /Stage[main]//Yumrepo[nginx]/baseurl: baseurl changed '' to 'http://nginx.org/packages/centos/6/$basearch/'
-Notice: /Stage[main]//Yumrepo[nginx]/enabled: enabled changed '' to '1'
-Notice: /Stage[main]//Yumrepo[nginx]/gpgcheck: gpgcheck changed '' to '0'Notice: /Stage[main]//Package[nginx]/ensure: created
-Notice: /Stage[main]//File[/usr/share/nginx/html/index.html]/content: content changed '{md5}e3eb0a1df437f3f97a64aca5952c8ea0' to '{md5}1db16ebfb21d376e5b2ae9d1eaf5b3c8'
-Notice: /Stage[main]//File[/etc/nginx/conf.d/my.conf]/ensure: created
-Notice: /Stage[main]//Service[nginx]/ensure: ensure changed 'stopped' to 'running'
-Notice: /Stage[main]//Service[nginx]: Triggered 'refresh' from 1 events
-Notice: Finished catalog run in 33.69 seconds
+Notice: Compiled catalog for puppet-book.local in environment production in 0.35 seconds
+Notice: /Stage[main]/Main/Yumrepo[nginx]/descr: descr changed '' to 'nginx yum repository'
+Notice: /Stage[main]/Main/Yumrepo[nginx]/baseurl: baseurl changed '' to 'http://nginx.org/packages/centos/$releasever/$basearch/'
+Notice: /Stage[main]/Main/Yumrepo[nginx]/enabled: enabled changed '' to '1'
+Notice: /Stage[main]/Main/Yumrepo[nginx]/gpgcheck: gpgcheck changed '' to '0'
+Notice: /Stage[main]/Main/Package[nginx]/ensure: created
+Notice: /Stage[main]/Main/File[/usr/share/nginx/html/index.html]/content: content changed '{md5}e3eb0a1df437f3f97a64aca5952c8ea0' to '{md5}1db16ebfb21d376e5b2ae9d1eaf5b3c8'
+Notice: /Stage[main]/Main/File[/etc/nginx/conf.d/my.conf]/ensure: created
+Notice: /Stage[main]/Main/Service[nginx]/ensure: ensure changed 'stopped' to 'running'
+Notice: Finished catalog run in 8.95 seconds
 //}
 
 

@@ -23,10 +23,11 @@ $ cd exec/
 //}
 
 
-以下の内容で、@<tt>{xbuild.pp}というファイルを作成してください。xbuildを@<tt>{git clone}した上で、Rubyのバージョン2.0.0-p0をビルドします。
+以下の内容で、@<tt>{xbuild.pp}というファイルを作成してください。xbuildを@<tt>{git clone}した上で、Rubyのバージョン2.1.2をビルドします。
 
 //emlist{
 package { 'git': }
+package { 'openssl-devel': }
 
 exec { 'xbuild':
   user    => 'vagrant',
@@ -34,7 +35,7 @@ exec { 'xbuild':
   path    => ['/usr/bin'],
   command => 'git clone git://github.com/tagomoris/xbuild.git local/xbuild',
   creates => '/home/vagrant/local/xbuild',
-  require => Package['git'],
+  require => Package['git', 'openssl-devel'],
 }
 
 exec { 'xbuild ruby':
@@ -42,8 +43,8 @@ exec { 'xbuild ruby':
   cwd         => '/home/vagrant',
   environment => ['USER=vagrant'],
   path        => ['/bin', '/usr/bin', '/home/vagrant/local/xbuild'],
-  command     => 'ruby-install 2.0.0-p0 /home/vagrant/local/ruby-2.0.0-p0',
-  creates     => '/home/vagrant/local/ruby-2.0.0-p0',
+  command     => 'ruby-install 2.1.2 /home/vagrant/local/ruby-2.1.2',
+  creates     => '/home/vagrant/local/ruby-2.1.2',
   timeout     => 0,
   require     => Exec['xbuild'],
 }
@@ -55,17 +56,19 @@ exec { 'xbuild ruby':
 //cmd{
 [vagrant@puppet-book ~]$ cd /vagrant/puppet/exec/
 [vagrant@puppet-book exec]$ sudo puppet apply xbuild.pp
-Notice: /Stage[main]//Exec[xbuild]/returns: executed successfully
-Notice: /Stage[main]//Exec[xbuild ruby]/returns: executed successfully
-Notice: Finished catalog run in 800.58 seconds
+Notice: Compiled catalog for puppet-book.local in environment production in 0.28 seconds
+Notice: /Stage[main]/Main/Package[openssl-devel]/ensure: created
+Notice: /Stage[main]/Main/Exec[xbuild]/returns: executed successfully
+Notice: /Stage[main]/Main/Exec[xbuild ruby]/returns: executed successfully
+Notice: Finished catalog run in 481.78 seconds
 //}
 
 
 以下の通り、指定したバージョンのRubyがインストールされたことが確認できます。
 
 //cmd{
-[vagrant@puppet-book exec]$ /home/vagrant/local/ruby-2.0.0-p0/bin/ruby -v
-ruby 2.0.0p0 (2013-02-24 revision 39474) [x86_64-linux]
+[vagrant@puppet-book exec]$ /home/vagrant/local/ruby-2.1.2/bin/ruby -v
+ruby 2.1.2p95 (2014-05-08 revision 45877) [x86_64-linux]
 //}
 
 == コマンドの実行ユーザ・グループ

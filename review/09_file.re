@@ -54,9 +54,11 @@ file { '/tmp/hello_puppet.txt':
 さっそく実行してみましょう。
 
 //cmd{
-[vagrant@puppet-book ~]$ cd /vagrant/puppet/file
+[vagrant@puppet-book ~]$ cd /vagrant/puppet/file/
 [vagrant@puppet-book file]$ sudo puppet apply content_string.pp
-Notice: /Stage[main]//File[/tmp/hello_puppet.txt]/ensure: defined content as '{md5}570be4af90660458e6c37633d5676ec2'Notice: Finished catalog run in 0.04 seconds
+Notice: Compiled catalog for puppet-book.local in environment production in 0.07 seconds
+Notice: /Stage[main]/Main/File[/tmp/hello_puppet.txt]/ensure: defined content as '{md5}1db16ebfb21d376e5b2ae9d1eaf5b3c8'
+Notice: Finished catalog run in 0.03 seconds
 //}
 
 
@@ -96,16 +98,17 @@ file { '/tmp/hello_puppet_template.txt':
 次に、@<tt>{hello_puppet_template.erb}という名前で、以下の内容のテンプレートファイルを作成します。
 
 //emlist{
-<%= content %>
+<%= @content %>
 //}
 
 
 今回は、@<tt>{puppet apply}時に、テンプレートファイルを格納したディレクトリ(ここではカレントディレクトリ)を指定するため、@<tt>{--templatedir=.}として、オプション引数をわたして実行します。
 
 //cmd{
-[vagrant@puppet-book file]$ sudo puppet apply --templatedir=.content_template.pp
-Notice: /Stage[main]//File[/tmp/hello_puppet_template.txt]/ensure: defined content as '{md5}6f459c8c8efb17c22040ffd76a4335d6'
-Notice: Finished catalog run in 0.04 seconds
+[vagrant@puppet-book file]$ sudo puppet apply --templatedir=. content_template.pp
+Notice: Compiled catalog for puppet-book.local in environment production in 0.06 seconds
+Notice: /Stage[main]/Main/File[/tmp/hello_puppet_template.txt]/ensure: defined content as '{md5}1db16ebfb21d376e5b2ae9d1eaf5b3c8'
+Notice: Finished catalog run in 0.03 seconds
 //}
 
 
@@ -133,10 +136,10 @@ Hello, Puppet!
 今回、ファイルの中身となる文字列を格納した@<tt>{$content}という変数は、1のトップスコープの変数です。
 
 
-1と2の変数については、テンプレート内で以下のように@<tt>{$}なしで参照できます。
+1と2の変数については、テンプレート内で以下のように@<tt>{@}付きで参照できます。
 
 //emlist{
-<%= content %>
+<%= @content %>
 //}
 
 
