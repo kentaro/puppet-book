@@ -191,15 +191,15 @@ class内部のresource type間の関係はこれまで通り@<tt>{require}や@<t
 //cmd{
 [vagrant@puppet-book ~]$ cd /vagrant/puppet/class/
 [vagrant@puppet-book class]$ sudo puppet apply --templatedir=. td-agent.pp
-Notice: /Stage[main]/Td-agent::Install/Yumrepo[treasuredata]/descr: descr changed '' to 'treasuredata repo'
-Notice: /Stage[main]/Td-agent::Install/Yumrepo[treasuredata]/baseurl: baseurl changed '' to 'http://packages.treasure-data.com/redhat/$basearch/'
-Notice: /Stage[main]/Td-agent::Install/Yumrepo[treasuredata]/enabled: enabled changed '' to '1'
-Notice: /Stage[main]/Td-agent::Install/Yumrepo[treasuredata]/gpgcheck: gpgcheck changed '' to '0'
+Notice: Compiled catalog for puppet-book.local in environment production in 0.51 seconds
+Notice: /Stage[main]/Td-agent::Install/Yumrepo[tresuredata]/descr: descr changed '' to 'tresuredata repo'
+Notice: /Stage[main]/Td-agent::Install/Yumrepo[tresuredata]/baseurl: baseurl changed '' to 'http://packages.treasuredata.com/redhat/$basearch'
+Notice: /Stage[main]/Td-agent::Install/Yumrepo[tresuredata]/enabled: enabled changed '' to '1'
+Notice: /Stage[main]/Td-agent::Install/Yumrepo[tresuredata]/gpgcheck: gpgcheck changed '' to '0'
 Notice: /Stage[main]/Td-agent::Install/Package[td-agent]/ensure: created
-Notice: /Stage[main]/Td-agent::Config/File[/etc/td-agent/td-agent.conf]/content: content changed '{md5}c61a851e347734f4500a9f7f373eed7f' to '{md5}344838bf3c7825824ab99ded78dff244'
+Notice: /Stage[main]/Td-agent::Config/File[/etc/td-agent/td-agent.conf]/content: content changed '{md5}c61a851e347734f4500a9f7f373eed7f' to '{md5}183b11dffec86747a3b31ddda02384ab'
 Notice: /Stage[main]/Td-agent::Service/Service[td-agent]/ensure: ensure changed 'stopped' to 'running'
-Notice: /Stage[main]/Td-agent::Service/Service[td-agent]: Triggered 'refresh' from 1 events
-Notice: Finished catalog run in 99.17 seconds
+Notice: Finished catalog run in 198.32 seconds
 //}
 
 
